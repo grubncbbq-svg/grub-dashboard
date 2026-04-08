@@ -1,0 +1,31 @@
+export const PURCHASES = {
+  restaurant: 5355.86,
+  home: 1503.54,
+  supply: 1087.54,
+  total: 7946.94,
+  byVendor: [
+    { name: "Sam's Club", R: 3067, total: 4670 },
+    { name: "Sysco", R: 666, total: 1235 },
+    { name: "Coca-Cola", R: 622, total: 622 },
+    { name: "Rest Depot", R: 540, total: 809 },
+    { name: "Harris Teeter", R: 365, total: 598 },
+    { name: "Strong Arm", R: 95, total: 96 },
+  ],
+  byMonth: [
+    { m: "Oct '25", v: 1511 },
+    { m: "Nov '25", v: 750 },
+    { m: "Feb '25", v: 622 },
+    { m: "Jan '26", v: 984 },
+    { m: "Feb '26", v: 1489 },
+  ],
+  topItems: [
+    { name: "Beef Cheeks", total: 1548 },
+    { name: "Chicken (All)", total: 892 },
+    { name: "Coca-Cola Products", total: 622 },
+    { name: "Corned Beef/Brisket", total: 369 },
+    { name: "Turkey Breast", total: 283 },
+    { name: "Pork (Belly/Butt/Loin)", total: 248 },
+    { name: "Olive Oil 10L", total: 142 },
+    { name: "Bread (Strong Arm)", total: 95 },
+  ],
+};
