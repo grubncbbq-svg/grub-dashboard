@@ -60,7 +60,8 @@ function isoDate(ts) {
 }
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
+  // Allow POST (manual Sync Now button) and GET (Vercel cron)
+  if (req.method !== "POST" && req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
@@ -69,10 +70,12 @@ export default async function handler(req, res) {
   }
 
   const startTime = Date.now();
+  const isCron = req.method === "GET";
 
-  // Default to last 30 days
+  // Default to last 30 days (cron pulls 7 days for daily refresh)
   const now = new Date();
-  const defaultStart = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+  const defaultDays = isCron ? 7 : 30;
+  const defaultStart = new Date(now.getTime() - defaultDays * 24 * 60 * 60 * 1000);
   const startDate = req.body?.startDate || defaultStart.toISOString().split("T")[0];
   const endDate = req.body?.endDate || now.toISOString().split("T")[0];
 
