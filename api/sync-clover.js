@@ -18,7 +18,14 @@ const supabase = createClient(
 
 async function cloverGet(path, params = {}) {
   const url = new URL(`${CLOVER_BASE}/merchants/${MID}${path}`);
-  for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
+  // Support array values for repeated query params (e.g. multiple `filter`s)
+  for (const [k, v] of Object.entries(params)) {
+    if (Array.isArray(v)) {
+      v.forEach((val) => url.searchParams.append(k, val));
+    } else {
+      url.searchParams.set(k, v);
+    }
+  }
   const res = await fetch(url, {
     headers: { Authorization: `Bearer ${TOKEN}` },
   });
@@ -75,8 +82,9 @@ export default async function handler(req, res) {
 
   try {
     // Fetch orders with line items + payments expanded
+    // Clover uses repeated `filter` params for AND clauses
     const orders = await cloverGetAll("/orders", {
-      filter: `createdTime>=${startMs} and createdTime<=${endMs}`,
+      filter: [`createdTime>=${startMs}`, `createdTime<=${endMs}`],
       expand: "lineItems,payments",
     });
 
