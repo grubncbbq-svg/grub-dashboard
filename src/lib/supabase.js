@@ -38,6 +38,78 @@ export async function upsertIngredientPrice({ name, vendor, unit, price }) {
   if (phError) throw phError;
 }
 
+// ── Clover Sales Data ───────────────────────────────────────────────────────
+
+export async function getDailySales(days = 90) {
+  const since = new Date();
+  since.setDate(since.getDate() - days);
+  const { data, error } = await supabase
+    .from("daily_sales")
+    .select("*")
+    .gte("date", since.toISOString().split("T")[0])
+    .order("date", { ascending: true });
+  if (error) throw error;
+  return data || [];
+}
+
+export async function getDailyTenders(days = 90) {
+  const since = new Date();
+  since.setDate(since.getDate() - days);
+  const { data, error } = await supabase
+    .from("daily_tenders")
+    .select("*")
+    .gte("date", since.toISOString().split("T")[0]);
+  if (error) throw error;
+  return data || [];
+}
+
+export async function getTopItems(days = 30, limit = 10) {
+  const since = new Date();
+  since.setDate(since.getDate() - days);
+  const { data, error } = await supabase
+    .from("daily_item_sales")
+    .select("item_name,quantity,revenue")
+    .gte("date", since.toISOString().split("T")[0]);
+  if (error) throw error;
+
+  // Aggregate across the date range
+  const map = new Map();
+  for (const row of data || []) {
+    const cur = map.get(row.item_name) || { name: row.item_name, quantity: 0, revenue: 0 };
+    cur.quantity += row.quantity || 0;
+    cur.revenue += parseFloat(row.revenue || 0);
+    map.set(row.item_name, cur);
+  }
+  return [...map.values()]
+    .sort((a, b) => b.revenue - a.revenue)
+    .slice(0, limit);
+}
+
+export async function getLastSync() {
+  const { data, error } = await supabase
+    .from("sync_log")
+    .select("*")
+    .eq("source", "clover")
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (error) throw error;
+  return data;
+}
+
+export async function triggerCloverSync({ startDate, endDate } = {}) {
+  const res = await fetch("/api/sync-clover", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ startDate, endDate }),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || "Sync failed");
+  }
+  return res.json();
+}
+
 // ── Receipts ────────────────────────────────────────────────────────────────
 
 export async function getReceipts() {
