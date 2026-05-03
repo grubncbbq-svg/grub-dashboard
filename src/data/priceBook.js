@@ -309,6 +309,39 @@ export const PRICE_BOOK = [
 
   // ── Condiments ─────────────────────────────────────────────────────────────
   {
+    name: "Sauerkraut",
+    vendor: "Sysco",
+    unit: "oz",
+    price: 0.087,
+    history: [
+      { date: "2026-05-03", price: 0.087 }, // ESTIMATE — update from Sysco receipt
+    ],
+    updated: "2026-05-03",
+    notes: "Estimated — verify from Sysco receipt",
+  },
+  {
+    name: "House Pickles",
+    vendor: "House",
+    unit: "oz",
+    price: 0.090,
+    history: [
+      { date: "2026-05-03", price: 0.090 }, // ESTIMATE — cucumber ~$1.25/lb + brine cost
+    ],
+    updated: "2026-05-03",
+    notes: "Estimated from cucumber cost — update when cucumber price confirmed",
+  },
+  {
+    name: "1,000 Island",
+    vendor: "House",
+    unit: "oz",
+    price: 0.094,
+    history: [
+      { date: "2026-05-03", price: 0.094 }, // ESTIMATE — batch: mayo+ketchup+pickle+onion+lemon / 91oz
+    ],
+    updated: "2026-05-03",
+    notes: "Estimated — update ketchup/pickle prices when confirmed",
+  },
+  {
     name: "Mustard Aioli",
     vendor: "House",
     unit: "oz",

@@ -53,4 +53,24 @@ export const COST_CARDS = [
     ],
     notes: "Estimates: iceberg ½ cup (~9 portions/head), bacon 2 thick slices (3.45 oz raw pork belly @ 87% yield). Confirm weights in kitchen.",
   },
+  {
+    menuItem: "Pastrami",
+    components: [
+      // Protein — house cured & smoked corned beef brisket
+      // Batch: 20.2 lb raw → 11 lb 9.3 oz cooked = 11.581 lb (57.3% yield)
+      // 5.5 oz finished / 57.3% = 9.6 oz raw = 0.600 lb
+      { ingredient: "Corned Beef Raw",  rawAmount: 0.600, unit: "lb",   yieldPct: 100 },
+      // Bread — Strong Arm deli rye, 8 portions per loaf, 2 slices per sandwich
+      { ingredient: "Deli Rye Loaf",    rawAmount: 0.125, unit: "each", yieldPct: 100 },
+      // Caramelized onions — 2 oz finished; raw onion cooks down ~33%  → 6 oz raw = 0.375 lb
+      { ingredient: "Sweet Onion",      rawAmount: 0.375, unit: "lb",   yieldPct: 100 },
+      // Sauerkraut — 2 oz (ESTIMATED price — update from Sysco receipt)
+      { ingredient: "Sauerkraut",       rawAmount: 2,     unit: "oz",   yieldPct: 100 },
+      // 1,000 Island dressing — 2 oz (ESTIMATED batch cost $0.094/oz)
+      { ingredient: "1,000 Island",     rawAmount: 2,     unit: "oz",   yieldPct: 100 },
+      // House dill pickles — 1.5 oz topping (ESTIMATED from cucumber cost)
+      { ingredient: "House Pickles",    rawAmount: 1.5,   unit: "oz",   yieldPct: 100 },
+    ],
+    notes: "Batch: 20.2 lb raw corned beef → 11 lb 9.3 oz finished (57.3% yield). Sauerkraut, pickles, 1K Island are estimated — update when Sysco/RD receipts confirmed.",
+  },
 ];
