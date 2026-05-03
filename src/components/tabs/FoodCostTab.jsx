@@ -46,7 +46,7 @@ export default function FoodCostTab() {
             </div>
             <div style={{ fontSize: 11, color: C.dim, marginTop: 8 }}>
               Target: {TARGET_FC}% · {calculated.length} of{" "}
-              {MENU_ITEMS.length} dishes costed
+              {allItems.length} dishes costed
             </div>
           </>
         ) : (
@@ -69,7 +69,7 @@ export default function FoodCostTab() {
       </div>
 
       {/* Getting started callout */}
-      {pending.length === MENU_ITEMS.length && (
+      {pending.length === allItems.length && (
         <div
           style={{
             ...cardStyle,
