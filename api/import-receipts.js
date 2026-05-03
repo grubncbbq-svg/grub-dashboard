@@ -13,9 +13,14 @@ const CAT_MAP = { restaurant: "R", home: "H", supply: "S" };
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
 
-  const { items } = req.body;
+  const { items, priceBookOnly } = req.body;
   if (!Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: "items array required" });
+  }
+
+  // ── Price book only mode (for re-runs) ──────────────────────────────────────
+  if (priceBookOnly) {
+    return await importPriceBook(items, res);
   }
 
   // Group by vendor + date
@@ -26,7 +31,7 @@ export default async function handler(req, res) {
     groups.get(key).push(row);
   }
 
-  let receiptCount = 0, itemCount = 0, priceBookCount = 0;
+  let receiptCount = 0, itemCount = 0;
   const errors = [];
 
   for (const [key, rows] of groups) {
@@ -61,32 +66,75 @@ export default async function handler(req, res) {
     }));
 
     const { error: iErr } = await supabase.from("receipt_items").insert(lineItems);
-    if (iErr) { errors.push(`Items ${key}: ${iErr.message}`); }
+    if (iErr) errors.push(`Items ${key}: ${iErr.message}`);
     else itemCount += lineItems.length;
-
-    // Update price_book with most recent price per ingredient
-    for (const ri of rows.filter((i) => i.category === "restaurant" && i.amount > 0)) {
-      const { error: pbErr } = await supabase.from("price_book").upsert(
-        { name: ri.item, vendor, unit: "each", price: ri.amount, updated_at: date },
-        { onConflict: "name" }
-      );
-      if (!pbErr) {
-        await supabase.from("price_history").insert({
-          ingredient_name: ri.item,
-          price: ri.amount,
-          vendor,
-          recorded_date: date,
-          receipt_id: receipt.id,
-        });
-        priceBookCount++;
-      }
-    }
   }
+
+  // Now populate price book
+  const { priceBookEntries, priceHistoryEntries } = await importPriceBookData(items);
 
   return res.status(200).json({
     receipts: receiptCount,
     items: itemCount,
-    priceBookEntries: priceBookCount,
+    priceBookEntries,
+    priceHistoryEntries,
     errors,
   });
+}
+
+async function importPriceBook(items, res) {
+  const { priceBookEntries, priceHistoryEntries, errors } = await importPriceBookData(items);
+  return res.status(200).json({ priceBookEntries, priceHistoryEntries, errors });
+}
+
+async function importPriceBookData(items) {
+  // Sort by date ascending so later entries overwrite earlier ones
+  const sorted = [...items]
+    .filter((i) => i.category === "restaurant" && i.amount > 0)
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  // Keep latest price per ingredient name
+  const latestByName = new Map();
+  for (const i of sorted) {
+    latestByName.set(i.item, i);
+  }
+
+  // Also collect full history (all restaurant purchases)
+  const history = sorted.map((i) => ({
+    ingredient_name: i.item,
+    price: i.amount,
+    vendor: i.vendor,
+    recorded_date: i.date,
+  }));
+
+  const errors = [];
+
+  // Insert price_book rows (one per unique ingredient name — latest price wins)
+  const priceBookRows = [...latestByName.values()].map((i) => ({
+    name: i.item,
+    vendor: i.vendor,
+    unit: "each",
+    price: i.amount,
+    updated_at: i.date,
+  }));
+
+  // Insert in batches of 50
+  let priceBookEntries = 0;
+  for (let i = 0; i < priceBookRows.length; i += 50) {
+    const batch = priceBookRows.slice(i, i + 50);
+    const { error } = await supabase.from("price_book").insert(batch);
+    if (error) errors.push(`price_book batch ${i}: ${error.message}`);
+    else priceBookEntries += batch.length;
+  }
+
+  // Insert price_history in batches of 100
+  let priceHistoryEntries = 0;
+  for (let i = 0; i < history.length; i += 100) {
+    const batch = history.slice(i, i + 100);
+    const { error } = await supabase.from("price_history").insert(batch);
+    if (error) errors.push(`price_history batch ${i}: ${error.message}`);
+    else priceHistoryEntries += batch.length;
+  }
+
+  return { priceBookEntries, priceHistoryEntries, errors };
 }
