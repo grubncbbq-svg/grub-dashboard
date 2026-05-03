@@ -7,32 +7,28 @@ if (!supabaseUrl || !supabaseKey) {
   console.warn("Supabase env vars not set — price book will not persist.");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = supabaseUrl && supabaseKey
+  ? createClient(supabaseUrl, supabaseKey)
+  : null;
 
 // ── Price Book ──────────────────────────────────────────────────────────────
 
 export async function getPriceBook() {
-  const { data, error } = await supabase
-    .from("price_book")
-    .select("*")
-    .order("name");
+  if (!supabase) return [];
+  const { data, error } = await supabase.from("price_book").select("*").order("name");
   if (error) throw error;
   return data;
 }
 
 export async function upsertIngredientPrice({ name, vendor, unit, price }) {
-  // Update price_book
+  if (!supabase) return;
   const { error: pbError } = await supabase.from("price_book").upsert(
     { name, vendor, unit, price, updated_at: new Date().toISOString().split("T")[0] },
     { onConflict: "name" }
   );
   if (pbError) throw pbError;
-
-  // Append to price_history
   const { error: phError } = await supabase.from("price_history").insert({
-    ingredient_name: name,
-    price,
-    vendor,
+    ingredient_name: name, price, vendor,
     recorded_date: new Date().toISOString().split("T")[0],
   });
   if (phError) throw phError;
@@ -41,11 +37,11 @@ export async function upsertIngredientPrice({ name, vendor, unit, price }) {
 // ── Clover Sales Data ───────────────────────────────────────────────────────
 
 export async function getDailySales(days = 90) {
+  if (!supabase) return [];
   const since = new Date();
   since.setDate(since.getDate() - days);
   const { data, error } = await supabase
-    .from("daily_sales")
-    .select("*")
+    .from("daily_sales").select("*")
     .gte("date", since.toISOString().split("T")[0])
     .order("date", { ascending: true });
   if (error) throw error;
@@ -53,17 +49,18 @@ export async function getDailySales(days = 90) {
 }
 
 export async function getDailyTenders(days = 90) {
+  if (!supabase) return [];
   const since = new Date();
   since.setDate(since.getDate() - days);
   const { data, error } = await supabase
-    .from("daily_tenders")
-    .select("*")
+    .from("daily_tenders").select("*")
     .gte("date", since.toISOString().split("T")[0]);
   if (error) throw error;
   return data || [];
 }
 
 export async function getTopItems(days = 30, limit = 10) {
+  if (!supabase) return [];
   const since = new Date();
   since.setDate(since.getDate() - days);
   const { data, error } = await supabase
@@ -86,6 +83,7 @@ export async function getTopItems(days = 30, limit = 10) {
 }
 
 export async function getLastSync() {
+  if (!supabase) return null;
   const { data, error } = await supabase
     .from("sync_log")
     .select("*")
@@ -113,6 +111,7 @@ export async function triggerCloverSync({ startDate, endDate } = {}) {
 // ── Receipts ────────────────────────────────────────────────────────────────
 
 export async function getReceipts() {
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from("receipts")
     .select("*, receipt_items(*)")
@@ -122,6 +121,7 @@ export async function getReceipts() {
 }
 
 export async function saveReceipt({ vendor, receipt_date, total, raw_text, items }) {
+  if (!supabase) throw new Error("Supabase not configured");
   // Insert receipt header
   const { data: receipt, error: rErr } = await supabase
     .from("receipts")
@@ -140,7 +140,7 @@ export async function saveReceipt({ vendor, receipt_date, total, raw_text, items
 }
 
 export async function confirmReceiptItems(receiptId, confirmedItems) {
-  // Mark items confirmed and update price book for each R-category item
+  if (!supabase) return;
   for (const item of confirmedItems) {
     await supabase
       .from("receipt_items")

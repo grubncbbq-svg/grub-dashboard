@@ -1,19 +1,20 @@
 import { C, cardStyle } from "../../lib/theme.js";
 import { fmtD } from "../../lib/format.js";
-import { MENU_ITEMS, TARGET_FC } from "../../data/menu.js";
+import { TARGET_FC } from "../../data/menu.js";
+import { getAllFoodCosts } from "../../lib/foodCostCalc.js";
 
 const fcColor = (pct) =>
   pct <= TARGET_FC ? C.green : pct <= TARGET_FC + 5 ? C.accent : C.red;
 
 export default function FoodCostTab() {
-  const calculated = MENU_ITEMS.filter((m) => m.foodCost !== null);
-  const pending = MENU_ITEMS.filter((m) => m.foodCost === null);
+  const allItems = getAllFoodCosts();
+  const calculated = allItems.filter((m) => m.foodCostPct !== null);
+  const pending = allItems.filter((m) => m.foodCostPct === null);
   const avgFC =
     calculated.length > 0
-      ? calculated.reduce((s, m) => s + (m.foodCost / m.price) * 100, 0) /
-        calculated.length
+      ? calculated.reduce((s, m) => s + m.foodCostPct, 0) / calculated.length
       : null;
-  const groups = [...new Set(MENU_ITEMS.map((m) => m.group))];
+  const groups = [...new Set(allItems.map((m) => m.group))];
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
@@ -99,7 +100,7 @@ export default function FoodCostTab() {
 
       {/* Dishes by group */}
       {groups.map((g) => {
-        const items = MENU_ITEMS.filter((m) => m.group === g);
+        const items = allItems.filter((m) => m.group === g);
         return (
           <div key={g} style={cardStyle}>
             <div
@@ -114,8 +115,7 @@ export default function FoodCostTab() {
               {g}
             </div>
             {items.map((m, i) => {
-              const pct =
-                m.foodCost !== null ? (m.foodCost / m.price) * 100 : null;
+              const pct = m.foodCostPct ?? null;
               const isLast = i === items.length - 1;
               return (
                 <div
@@ -144,7 +144,7 @@ export default function FoodCostTab() {
                       style={{ fontSize: 11, color: C.dim, marginTop: 2 }}
                     >
                       {fmtD(m.price)}
-                      {m.foodCost !== null && ` · cost ${fmtD(m.foodCost)}`}
+                      {pct !== null && ` · cost ${fmtD((pct / 100) * m.price)}`}
                     </div>
                   </div>
                   <div style={{ textAlign: "right", minWidth: 70 }}>

@@ -10,14 +10,344 @@
 //   updated:    ISO date string of last update
 
 export const PRICE_BOOK = [
-  // Placeholder — will be populated dish-by-dish from the kitchen
-  // Example:
-  // {
-  //   name: "Corned Beef Raw",
-  //   vendor: "Sam's Club",
-  //   unit: "lb",
-  //   price: 5.98,
-  //   history: [{ date: "2026-02-15", price: 5.98 }],
-  //   updated: "2026-02-15",
-  // },
+  // ── Proteins ───────────────────────────────────────────────────────────────
+  {
+    name: "Beef Cheek Meat",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 4.97,
+    history: [
+      { date: "2025-10-17", price: 3.15 },  // $18.93 / ~6lb est
+      { date: "2025-10-19", price: 4.23 },  // $101.68 / 24lb est (x4 packs)
+      { date: "2025-10-26", price: 4.27 },  // $70.61 / ~16.5lb est (x3)
+      { date: "2025-10-30", price: 4.27 },  // $85.60 / 20lb est (x3)
+      { date: "2025-11-13", price: 4.43 },  // $132.94 / 30lb est (x5)
+      { date: "2026-04-27", price: 4.97 },  // $35.44 / 7.13lb confirmed on receipt
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Chuck Roll",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 5.77,
+    history: [
+      { date: "2026-04-27", price: 5.77 }, // $175.98 / 30.5lb confirmed on receipt
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Corned Beef Raw",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 5.29,
+    history: [
+      { date: "2026-02-02", price: 5.29 }, // $106.01 / 20.04lb
+      { date: "2026-02-09", price: 5.29 }, // $88.50 / 16.73lb
+      { date: "2026-03-16", price: 4.95 }, // $84.20 / 17.01lb
+      { date: "2026-04-14", price: 5.29 }, // $100.03 / ~18.9lb
+      { date: "2026-04-20", price: 5.29 }, // $99.66 / 18.91lb
+      { date: "2026-04-27", price: 5.29 }, // $90.04 / 17.02lb
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Pork Belly",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 3.48,
+    history: [
+      { date: "2026-03-16", price: 3.73 }, // $46.92 / 12.58lb
+      { date: "2026-04-20", price: 3.48 }, // $43.26 / 12.43lb (Pork Belly S/On 23.88lb @$3.48/lb — likely 2 packs)
+    ],
+    updated: "2026-04-20",
+  },
+  {
+    name: "Turkey Breast",
+    vendor: "Harris Teeter",
+    unit: "lb",
+    price: 2.00,
+    history: [
+      { date: "2026-01-05", price: 12.75 }, // $63.75 / 5 breasts (per breast, ~8lb ea → ~$1.59/lb)
+      { date: "2026-01-16", price: 17.03 }, // $68.13 / 4 breasts (per breast)
+      { date: "2026-02-02", price: 19.65 }, // $78.58 / 4 breasts
+      { date: "2026-04-27", price: 2.00 },  // $8.52 / 4.26lb — confirmed per-lb price on receipt
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Chicken Breast",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 2.88,
+    history: [
+      { date: "2026-04-27", price: 2.88 }, // $17.40 / 6.04lb confirmed on receipt
+    ],
+    updated: "2026-04-27",
+  },
+
+  // ── Bread ──────────────────────────────────────────────────────────────────
+  {
+    name: "Ciabatta Roll",
+    vendor: "Strong Arm Baking",
+    unit: "each",
+    price: 3.94,
+    history: [
+      { date: "2026-02-24", price: 3.94 }, // $11.82 / 3
+      { date: "2026-04-09", price: 3.94 }, // $15.76 / 4
+      { date: "2026-04-11", price: 3.94 },
+      { date: "2026-04-14", price: 3.94 },
+      { date: "2026-04-16", price: 3.94 },
+      { date: "2026-04-23", price: 3.94 },
+      { date: "2026-04-25", price: 3.94 },
+      { date: "2026-04-28", price: 3.94 },
+    ],
+    updated: "2026-04-28",
+  },
+  {
+    name: "Focaccia Sheet",
+    vendor: "Strong Arm Baking",
+    unit: "each",
+    price: 17.90,
+    history: [
+      { date: "2026-02-24", price: 17.90 },
+      { date: "2026-04-09", price: 17.90 },
+    ],
+    updated: "2026-04-09",
+  },
+  {
+    name: "Deli Rye Loaf",
+    vendor: "Strong Arm Baking",
+    unit: "each",
+    price: 7.27,
+    history: [
+      { date: "2026-04-14", price: 7.27 }, // $43.62 / 6 loaves
+      { date: "2026-04-28", price: 7.27 },
+    ],
+    updated: "2026-04-28",
+  },
+
+  // ── Produce ────────────────────────────────────────────────────────────────
+  {
+    name: "Sweet Peppers",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 2.97,
+    history: [
+      { date: "2026-02-09", price: 1.83 }, // Red Pepper Bag 5lb @ $9.14
+      { date: "2026-04-27", price: 2.97 }, // Bag Pepper Orange 5lb @ $14.85
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Sweet Onion",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 0.79,
+    history: [
+      { date: "2026-04-27", price: 0.79 }, // Onion YD/Sweet 10lb @ $7.90
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Avocado",
+    vendor: "Sam's Club",
+    unit: "each",
+    price: 0.55,
+    history: [
+      { date: "2026-04-06", price: 0.55 }, // $4.37 / 8ct est
+    ],
+    updated: "2026-04-06",
+  },
+  {
+    name: "Lemon",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 1.31,
+    history: [
+      { date: "2026-04-06", price: 1.31 }, // 3lb bag @ $3.92
+    ],
+    updated: "2026-04-06",
+  },
+  {
+    name: "Goat Cheese",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 7.50,
+    history: [
+      { date: "2025-11-15", price: 7.50 }, // Crumble 2lb @ $14.99
+      { date: "2026-02-09", price: 7.50 },
+      { date: "2026-04-20", price: 7.92 }, // Crumbs 2lb @ $15.84
+      { date: "2026-04-27", price: 4.71 }, // Chevrai 10.5oz @ $4.71 (small format)
+    ],
+    updated: "2026-04-20",
+  },
+  {
+    name: "Honeycrisp Apples",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 2.70,
+    history: [
+      { date: "2026-02-09", price: 1.94 }, // $7.75 / 4lb est
+      { date: "2026-04-20", price: 2.70 }, // $16.19 / 6lb est
+    ],
+    updated: "2026-04-20",
+  },
+  {
+    name: "Green Cabbage",
+    vendor: "Harris Teeter",
+    unit: "lb",
+    price: 0.99,
+    history: [
+      { date: "2026-01-05", price: 1.00 }, // 3.27lb @ $3.24
+      { date: "2026-02-14", price: 0.99 }, // 4.11lb @ $4.07
+    ],
+    updated: "2026-02-14",
+  },
+  {
+    name: "Beets",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 0.98,
+    history: [
+      { date: "2026-02-02", price: 0.59 }, // 25lb @ $14.65
+      { date: "2026-04-27", price: 0.98 }, // 25lb @ $24.40
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Pistachios",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 8.99,
+    history: [
+      { date: "2026-04-06", price: 8.99 }, // $17.98 / 2lb est
+    ],
+    updated: "2026-04-06",
+  },
+
+  // ── Dairy ──────────────────────────────────────────────────────────────────
+  {
+    name: "Mayonnaise",
+    vendor: "Restaurant Depot",
+    unit: "oz",
+    price: 0.109,
+    history: [
+      { date: "2026-02-02", price: 0.110 }, // Mayo Ex Hvy Ken 4gal @ $56.42 / 512oz
+      { date: "2026-04-14", price: 0.109 }, // $55.82 / 512oz
+    ],
+    updated: "2026-04-14",
+  },
+  {
+    name: "Heavy Cream",
+    vendor: "Sam's Club",
+    unit: "oz",
+    price: 0.054,
+    history: [
+      { date: "2025-10-30", price: 0.054 }, // MK Heavy Cream $7.22 / ~133oz est (half gallon)
+    ],
+    updated: "2025-10-30",
+  },
+  {
+    name: "Unsalted Butter",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 5.48,
+    history: [
+      { date: "2026-04-17", price: 5.48 }, // $10.96 / 2lb
+    ],
+    updated: "2026-04-17",
+  },
+  {
+    name: "Eggs",
+    vendor: "Sam's Club",
+    unit: "each",
+    price: 0.19,
+    history: [
+      { date: "2026-04-27", price: 0.19 }, // MM Eggs 24ct @ $4.67
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Whole Milk",
+    vendor: "Sam's Club",
+    unit: "oz",
+    price: 0.036,
+    history: [
+      { date: "2026-04-27", price: 0.036 }, // $3.42 / ~96oz est (3qt)
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Cream Cheese",
+    vendor: "Sam's Club",
+    unit: "oz",
+    price: 0.202,
+    history: [
+      { date: "2026-04-17", price: 0.202 }, // $6.47 / 32oz
+    ],
+    updated: "2026-04-17",
+  },
+
+  // ── Pantry ─────────────────────────────────────────────────────────────────
+  {
+    name: "Olive Oil",
+    vendor: "Sysco",
+    unit: "oz",
+    price: 0.050,
+    history: [
+      { date: "2026-04-20", price: 0.050 }, // Extra Virgin 10L BIB @ $152.75 / ~338oz
+    ],
+    updated: "2026-04-20",
+  },
+  {
+    name: "Kosher Salt",
+    vendor: "Sysco",
+    unit: "lb",
+    price: 0.40,
+    history: [
+      { date: "2026-04-20", price: 0.40 }, // Flake Coarse 123lb @ $49.49
+    ],
+    updated: "2026-04-20",
+  },
+  {
+    name: "Brown Sugar",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 0.95,
+    history: [
+      { date: "2026-04-27", price: 0.95 }, // Lt Dom 25lb @ $23.70
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Apple Cider Vinegar",
+    vendor: "Sysco",
+    unit: "oz",
+    price: 0.043,
+    history: [
+      { date: "2026-04-20", price: 0.043 }, // 1gal @ $43.85 / 128oz (4 units → $10.96/gal... wait, $43.85 total)
+    ],
+    updated: "2026-04-20",
+  },
+  {
+    name: "Pecan Halves",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 9.99,
+    history: [
+      { date: "2026-04-17", price: 9.99 }, // $14.98 / 1.5lb est
+    ],
+    updated: "2026-04-17",
+  },
+  {
+    name: "Maple Syrup",
+    vendor: "Sam's Club",
+    unit: "oz",
+    price: 0.624,
+    history: [
+      { date: "2026-04-27", price: 0.624 }, // MM Org Maple Syrup $11.98 / ~32oz est
+    ],
+    updated: "2026-04-27",
+  },
 ];

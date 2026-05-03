@@ -9,17 +9,23 @@
 // weighing proteins raw vs cooked.
 
 export const COST_CARDS = [
-  // Placeholder — example structure:
-  // {
-  //   menuItem: "Pastrami",          // must match MENU_ITEMS[].name
-  //   components: [
-  //     { ingredient: "Corned Beef Raw", rawAmount: 4, unit: "oz", yieldPct: 65 },
-  //     { ingredient: "La Farm Sourdough", rawAmount: 2, unit: "slice", yieldPct: 100 },
-  //     { ingredient: "Sauerkraut", rawAmount: 1, unit: "oz", yieldPct: 100 },
-  //     { ingredient: "Caramelized Onions", rawAmount: 0.5, unit: "oz", yieldPct: 100 },
-  //     { ingredient: "Dill Pickles", rawAmount: 0.5, unit: "oz", yieldPct: 100 },
-  //     { ingredient: "1000 Island Dressing", rawAmount: 1, unit: "oz", yieldPct: 100 },
-  //   ],
-  //   notes: "Yield on corned beef brisket ~65% after smoking and trim",
-  // },
+  {
+    menuItem: "Smoked Beef Cheek",
+    components: [
+      // Protein — cheek + chuck blend smoked together
+      // Batch: 6.06 lb cheek + 4.30 lb chuck = 10.36 lb raw → 6.09 lb cooked (58.8% yield)
+      // 5 oz finished meat per sandwich → 8.50 oz raw total (5 / 0.588)
+      // Cheek share: 58.5% of raw → 4.97 oz = 0.311 lb
+      // Chuck share: 41.5% of raw → 3.53 oz = 0.221 lb
+      { ingredient: "Beef Cheek Meat", rawAmount: 0.311, unit: "lb", yieldPct: 100 },
+      { ingredient: "Chuck Roll",      rawAmount: 0.221, unit: "lb", yieldPct: 100 },
+      // Bread — Strong Arm ciabatta, 3–4 portions per roll (using 3.5 avg)
+      { ingredient: "Ciabatta Roll",   rawAmount: 0.286, unit: "each", yieldPct: 100 },
+      // Toppings — pickled peppers, caramelized onions, house aioli
+      { ingredient: "Sweet Peppers",   rawAmount: 0.094, unit: "lb", yieldPct: 100 },
+      { ingredient: "Sweet Onion",     rawAmount: 0.125, unit: "lb", yieldPct: 100 },
+      { ingredient: "Mayonnaise",      rawAmount: 0.75,  unit: "oz", yieldPct: 100 },
+    ],
+    notes: "April 2026 batch: 6.06 lb cheek + 4.30 lb chuck → 6.09 lb cooked (58.8% yield). 5 oz finished per sandwich.",
+  },
 ];
