@@ -289,6 +289,49 @@ export const PRICE_BOOK = [
     updated: "2026-04-17",
   },
 
+  // ── Produce (continued) ────────────────────────────────────────────────────
+  {
+    name: "Iceberg Lettuce",
+    vendor: "Sam's Club",
+    unit: "each",
+    price: 1.71,
+    history: [
+      { date: "2025-10-17", price: 3.97 }, // Lettuce 2ct @ $7.94 → $3.97/head
+      { date: "2025-10-26", price: 1.99 }, // Lettuce 2ct @ $3.97 → $1.99/head
+      { date: "2025-11-10", price: 1.99 }, // Lettuce 2ct @ $3.97 → $1.99/head
+      { date: "2025-11-19", price: 1.83 }, // Lettuce 2ct x2 @ $7.30 → $1.83/head
+      { date: "2026-04-06", price: 1.56 }, // Lettuce 2ct @ $3.12 → $1.56/head
+      { date: "2026-04-21", price: 1.48 }, // Lettuce 2ct @ $2.95 → $1.48/head
+      { date: "2026-04-27", price: 1.71 }, // Lettuce 2ct @ $3.42 → $1.71/head
+    ],
+    updated: "2026-04-27",
+  },
+
+  // ── Condiments ─────────────────────────────────────────────────────────────
+  {
+    name: "Mustard Aioli",
+    vendor: "House",
+    unit: "oz",
+    price: 0.104,
+    history: [
+      { date: "2026-05-03", price: 0.104 }, // Batch: 4C mayo + ¼C lemon + ½C + 2Tbl creole mustard + herbs/onion ≈ $4.59 / 44 oz
+    ],
+    updated: "2026-05-03",
+    notes: "House recipe — recalculate if creole mustard or mayo price changes",
+  },
+  {
+    name: "Creole Mustard",
+    vendor: "Restaurant Depot",
+    unit: "oz",
+    price: 0.134,
+    history: [
+      { date: "2026-02-02", price: 0.134 }, // Mustard Creole 2qt Gal @ $17.21 / 128oz
+      { date: "2026-04-27", price: 0.134 }, // Mustard Creole ZTR Gal @ $17.21 / 128oz
+    ],
+    updated: "2026-04-27",
+    notes: "Replaces Sysco Whole Grain Mustard across all recipes",
+  },
+
   // ── Pantry ─────────────────────────────────────────────────────────────────
   {
     name: "Olive Oil",

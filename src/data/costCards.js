@@ -28,4 +28,29 @@ export const COST_CARDS = [
     ],
     notes: "April 2026 batch: 6.06 lb cheek + 4.30 lb chuck → 6.09 lb cooked (58.8% yield). 5 oz finished per sandwich.",
   },
+  {
+    menuItem: "Smoked Turkey Breast",
+    components: [
+      // Protein — Shady Brook Farms bone-in breast, slow smoked to 150°F
+      // Purchase: 5.96 lb whole breast @ $1.99/lb VIC = $11.86
+      // Usable trimmed raw onto smoker: 3 lb 5.83 oz = 3.364 lb (56.4% trim yield)
+      // Smoke yield at 150°F: ~90% (minimal shrinkage at low temp)
+      // Overall yield: 50.8% — 5 oz finished → 9.84 oz raw whole breast = 0.616 lb
+      { ingredient: "Turkey Breast",  rawAmount: 0.616, unit: "lb",  yieldPct: 100 },
+      // Bacon — house-cured pork belly, slow smoked to 150°F (~87% yield)
+      // 2 thick slices ≈ 3 oz cooked → 3.45 oz raw = 0.216 lb
+      { ingredient: "Pork Belly",     rawAmount: 0.216, unit: "lb",  yieldPct: 100 },
+      // Bread — Strong Arm focaccia sheet, ~21 portions per sheet
+      { ingredient: "Focaccia Sheet", rawAmount: 0.048, unit: "each", yieldPct: 100 },
+      // Toppings
+      { ingredient: "Avocado",        rawAmount: 0.25,  unit: "each", yieldPct: 100 },
+      // Pickled onions — ~1.25 oz raw sweet onion per sandwich
+      { ingredient: "Sweet Onion",    rawAmount: 0.078, unit: "lb",  yieldPct: 100 },
+      // Mustard Aioli — 2 oz per sandwich ($0.104/oz batch cost)
+      { ingredient: "Mustard Aioli",  rawAmount: 2,     unit: "oz",  yieldPct: 100 },
+      // Iceberg — ½ cup shredded, ~9 portions per head
+      { ingredient: "Iceberg Lettuce", rawAmount: 0.111, unit: "each", yieldPct: 100 },
+    ],
+    notes: "Estimates: iceberg ½ cup (~9 portions/head), bacon 2 thick slices (3.45 oz raw pork belly @ 87% yield). Confirm weights in kitchen.",
+  },
 ];
