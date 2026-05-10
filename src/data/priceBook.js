@@ -216,6 +216,38 @@ export const PRICE_BOOK = [
     updated: "2026-04-27",
   },
   {
+    name: "Celery",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 1.70,
+    history: [
+      { date: "2026-02-13", price: 1.70 }, // Celery Stk 2.5# @ $4.24
+    ],
+    updated: "2026-02-13",
+  },
+  {
+    name: "Parsley",
+    vendor: "Harris Teeter",
+    unit: "each",
+    price: 1.99,
+    history: [
+      { date: "2026-02-14", price: 1.99 }, // Parsley bunch @ $1.99
+      { date: "2026-04-27", price: 1.99 }, // Parsley bunch @ $1.99
+    ],
+    updated: "2026-04-27",
+  },
+  {
+    name: "Yellow Potato",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 0.40,
+    history: [
+      { date: "2026-02-09", price: 0.40 }, // ESTIMATED — "Yellow Potato" @ $20.02, case weight not on receipt (assumed 50lb)
+    ],
+    updated: "2026-02-09",
+    notes: "Estimated from RD receipt — confirm case weight (assumed 50lb at $20.02)",
+  },
+  {
     name: "Pistachios",
     vendor: "Sam's Club",
     unit: "lb",
@@ -312,12 +344,12 @@ export const PRICE_BOOK = [
     name: "Sauerkraut",
     vendor: "Sysco",
     unit: "oz",
-    price: 0.087,
+    price: 0.020,
     history: [
-      { date: "2026-05-03", price: 0.087 }, // ESTIMATE — update from Sysco receipt
+      { date: "2026-05-03", price: 0.087 }, // ESTIMATE (pre-receipt)
+      { date: "2026-04-20", price: 0.020 }, // Confirmed — Sauerkraut Shredded FCY 12gal @ $30.85 / 1,536oz
     ],
-    updated: "2026-05-03",
-    notes: "Estimated — verify from Sysco receipt",
+    updated: "2026-04-20",
   },
   {
     name: "House Pickles",
@@ -370,11 +402,12 @@ export const PRICE_BOOK = [
     name: "Olive Oil",
     vendor: "Sysco",
     unit: "oz",
-    price: 0.050,
+    price: 0.452,
     history: [
-      { date: "2026-04-20", price: 0.050 }, // Extra Virgin 10L BIB @ $152.75 / ~338oz
+      { date: "2026-04-20", price: 0.452 }, // Corto EVOO — Oil Olive Extra Virgin 10L BIB @ $152.75 / 338oz
     ],
     updated: "2026-04-20",
+    notes: "Corto brand, Sysco 10L bag-in-box",
   },
   {
     name: "Kosher Salt",
