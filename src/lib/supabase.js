@@ -34,6 +34,65 @@ export async function upsertIngredientPrice({ name, vendor, unit, price }) {
   if (phError) throw phError;
 }
 
+// Rename an ingredient — updates both price_book and price_history so
+// historical data stays attached to the new name.
+export async function renamePriceBookEntry(oldName, newName) {
+  if (!supabase) return;
+  const trimmed = (newName || "").trim();
+  if (!trimmed) throw new Error("New name cannot be empty");
+  if (trimmed === oldName) return;
+
+  // Check whether the target name already exists; if so, the caller should merge.
+  const { data: existing, error: lookupErr } = await supabase
+    .from("price_book")
+    .select("name")
+    .eq("name", trimmed)
+    .maybeSingle();
+  if (lookupErr) throw lookupErr;
+  if (existing) {
+    throw new Error(
+      `An ingredient named "${trimmed}" already exists. Use Merge instead.`
+    );
+  }
+
+  const { error: pbErr } = await supabase
+    .from("price_book")
+    .update({ name: trimmed, updated_at: new Date().toISOString().split("T")[0] })
+    .eq("name", oldName);
+  if (pbErr) throw pbErr;
+
+  const { error: phErr } = await supabase
+    .from("price_history")
+    .update({ ingredient_name: trimmed })
+    .eq("ingredient_name", oldName);
+  if (phErr) throw phErr;
+}
+
+// Merge `fromName` INTO `toName`: reassigns history rows to the target,
+// then deletes the source price_book row. Target keeps its current price.
+export async function mergePriceBookEntries(fromName, toName) {
+  if (!supabase) return;
+  if (fromName === toName) throw new Error("Cannot merge an entry into itself");
+
+  const { error: phErr } = await supabase
+    .from("price_history")
+    .update({ ingredient_name: toName })
+    .eq("ingredient_name", fromName);
+  if (phErr) throw phErr;
+
+  const { error: delErr } = await supabase
+    .from("price_book")
+    .delete()
+    .eq("name", fromName);
+  if (delErr) throw delErr;
+}
+
+export async function deletePriceBookEntry(name) {
+  if (!supabase) return;
+  const { error } = await supabase.from("price_book").delete().eq("name", name);
+  if (error) throw error;
+}
+
 // ── Clover Sales Data ───────────────────────────────────────────────────────
 
 export async function getDailySales(days = 90) {

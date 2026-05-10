@@ -6,6 +6,7 @@ import FoodCostTab from "./components/tabs/FoodCostTab.jsx";
 import PurchasesTab from "./components/tabs/PurchasesTab.jsx";
 import RecipesTab from "./components/tabs/RecipesTab.jsx";
 import ReceiptsTab from "./components/tabs/ReceiptsTab.jsx";
+import PriceBookTab from "./components/tabs/PriceBookTab.jsx";
 import CalendarTab from "./components/tabs/CalendarTab.jsx";
 import ExpensesTab from "./components/tabs/ExpensesTab.jsx";
 
@@ -68,6 +69,7 @@ export default function App() {
         {tab === "foodcost" && <FoodCostTab />}
         {tab === "purchases" && <PurchasesTab />}
         {tab === "receipts" && <ReceiptsTab />}
+        {tab === "pricebook" && <PriceBookTab />}
         {tab === "recipes" && <RecipesTab />}
         {tab === "calendar" && <CalendarTab />}
         {tab === "expenses" && <ExpensesTab />}

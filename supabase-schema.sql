@@ -54,3 +54,11 @@ create table if not exists receipt_items (
 create index if not exists price_book_name_idx on price_book(lower(name));
 create index if not exists receipt_items_receipt_id_idx on receipt_items(receipt_id);
 create index if not exists price_history_ingredient_idx on price_history(ingredient_name);
+
+-- Migration (May 2026): enforce uniqueness on price_book.name so that
+-- upsertIngredientPrice's onConflict: "name" actually updates existing rows
+-- instead of creating duplicates from receipt scans.
+-- If existing duplicates block this constraint, clean them up via the
+-- Price Book tab (Merge into…) first, then re-run.
+alter table price_book
+  add constraint price_book_name_unique unique (name);

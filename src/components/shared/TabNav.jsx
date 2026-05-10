@@ -4,6 +4,7 @@ const TABS = [
   { id: "overview", label: "Overview", icon: "\u{1F4CA}" },
   { id: "foodcost", label: "Food Cost", icon: "\u{1F3AF}" },
   { id: "receipts", label: "Receipts", icon: "\u{1F4F8}" },
+  { id: "pricebook", label: "Price Book", icon: "\u{1F4D2}" },
   { id: "purchases", label: "Purchases", icon: "\u{1F9FE}" },
   { id: "recipes", label: "Recipes", icon: "\u{1F356}" },
   { id: "calendar", label: "Calendar", icon: "\u{1F4C5}" },
