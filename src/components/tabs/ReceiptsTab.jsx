@@ -237,9 +237,30 @@ export default function ReceiptsTab() {
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 13, color: C.white, fontWeight: 600 }}>{item.name}</div>
-                <div style={{ fontSize: 11, color: C.dim, marginTop: 2 }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <input
+                  type="text"
+                  value={item.name || ""}
+                  onChange={(e) => updateItem(idx, "name", e.target.value)}
+                  placeholder="Item name"
+                  spellCheck={false}
+                  style={{
+                    width: "100%",
+                    fontSize: 13,
+                    color: C.white,
+                    fontWeight: 600,
+                    background: "transparent",
+                    border: `1px solid ${C.border}`,
+                    borderRadius: 6,
+                    padding: "6px 8px",
+                    fontFamily: "inherit",
+                    outline: "none",
+                    boxSizing: "border-box",
+                  }}
+                  onFocus={(e) => (e.target.style.borderColor = C.accent)}
+                  onBlur={(e) => (e.target.style.borderColor = C.border)}
+                />
+                <div style={{ fontSize: 11, color: C.dim, marginTop: 4 }}>
                   {item.quantity && item.unit ? `${item.quantity} ${item.unit} · ` : ""}
                   {item.unit_price ? `${fmtD(item.unit_price)}/unit · ` : ""}
                   {item.total_price ? fmtD(item.total_price) : ""}
