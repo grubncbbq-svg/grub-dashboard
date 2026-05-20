@@ -48,8 +48,9 @@ export const PRICE_BOOK = [
       { date: "2026-04-14", price: 5.29 }, // $100.03 / ~18.9lb
       { date: "2026-04-20", price: 5.29 }, // $99.66 / 18.91lb
       { date: "2026-04-27", price: 5.29 }, // $90.04 / 17.02lb
+      { date: "2026-05-13", price: 5.27 }, // Slight decrease from $5.29 (exact weight unreadable on receipt)
     ],
-    updated: "2026-04-27",
+    updated: "2026-05-13",
   },
   {
     name: "Pork Belly",
@@ -119,6 +120,17 @@ export const PRICE_BOOK = [
     ],
     updated: "2026-05-15",
     notes: "For biscuit & gravy special",
+  },
+  {
+    name: "Sliced Ham",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 6.39,
+    history: [
+      { date: "2026-05-06", price: 6.39 }, // Ham Biscuit Slice R/W 12.98lb @ $6.39
+    ],
+    updated: "2026-05-06",
+    notes: "Confirm menu use — ham biscuits? biscuit & gravy add-on?",
   },
 
   // ── Bread ──────────────────────────────────────────────────────────────────
@@ -205,12 +217,13 @@ export const PRICE_BOOK = [
     name: "Sweet Peppers",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 2.97,
+    price: 3.52,
     history: [
       { date: "2026-02-09", price: 1.83 }, // Red Pepper Bag 5lb @ $9.14
       { date: "2026-04-27", price: 2.97 }, // Bag Pepper Orange 5lb @ $14.85
+      { date: "2026-05-06", price: 3.52 }, // Orange Pepper 5lb @ $17.59
     ],
-    updated: "2026-04-27",
+    updated: "2026-05-06",
   },
   {
     name: "Sweet Onion",
@@ -248,14 +261,27 @@ export const PRICE_BOOK = [
     name: "Goat Cheese",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 7.50,
+    price: 8.03,
     history: [
       { date: "2025-11-15", price: 7.50 }, // Crumble 2lb @ $14.99
       { date: "2026-02-09", price: 7.50 },
       { date: "2026-04-20", price: 7.92 }, // Crumbs 2lb @ $15.84
       { date: "2026-04-27", price: 4.71 }, // Chevrai 10.5oz @ $4.71 (small format)
+      { date: "2026-05-06", price: 8.03 }, // Crumb 2lb @ $16.05
+      { date: "2026-05-13", price: 8.03 }, // Crumb 2lb @ $16.05 (×2 packs)
     ],
-    updated: "2026-04-20",
+    updated: "2026-05-13",
+  },
+  {
+    name: "Romaine Hearts",
+    vendor: "Restaurant Depot",
+    unit: "each",
+    price: 1.33,
+    history: [
+      { date: "2026-05-06", price: 1.33 }, // 6ct pack @ $7.99 → $1.33/heart
+    ],
+    updated: "2026-05-06",
+    notes: "6ct pack at RD",
   },
   {
     name: "Honeycrisp Apples",
@@ -343,8 +369,9 @@ export const PRICE_BOOK = [
     history: [
       { date: "2026-02-02", price: 0.110 }, // Mayo Ex Hvy Ken 4gal @ $56.42 / 512oz
       { date: "2026-04-14", price: 0.109 }, // $55.82 / 512oz
+      { date: "2026-05-13", price: 0.109 }, // $55.82 / 512oz (confirmed stable)
     ],
-    updated: "2026-04-14",
+    updated: "2026-05-13",
   },
   {
     name: "Heavy Cream",
@@ -358,13 +385,16 @@ export const PRICE_BOOK = [
   },
   {
     name: "Unsalted Butter",
-    vendor: "Sam's Club",
+    vendor: "Restaurant Depot",
     unit: "lb",
-    price: 5.48,
+    price: 3.06,
     history: [
-      { date: "2026-04-17", price: 5.48 }, // $10.96 / 2lb
+      { date: "2026-04-17", price: 5.48 }, // Sam's $10.96 / 2lb
+      { date: "2026-05-06", price: 2.90 }, // RD BTR Unslt SLD JF 1lb @ $2.90 (×2)
+      { date: "2026-05-13", price: 3.06 }, // RD BTR Unslt SLD JF 1lb @ $3.06
     ],
-    updated: "2026-04-17",
+    updated: "2026-05-13",
+    notes: "Switched to Restaurant Depot — much cheaper than Sam's ($5.48 → $3.06/lb)",
   },
   {
     name: "Eggs",
@@ -390,13 +420,26 @@ export const PRICE_BOOK = [
   },
   {
     name: "Cream Cheese",
-    vendor: "Sam's Club",
+    vendor: "Restaurant Depot",
     unit: "oz",
-    price: 0.202,
+    price: 0.139,
     history: [
-      { date: "2026-04-17", price: 0.202 }, // $6.47 / 32oz
+      { date: "2026-04-17", price: 0.202 }, // Sam's Philly 32oz @ $6.47
+      { date: "2026-05-13", price: 0.139 }, // RD Cream Loaf JF 3lb @ $6.66 = 48oz
     ],
-    updated: "2026-04-17",
+    updated: "2026-05-13",
+    notes: "Switched to Restaurant Depot Cream Loaf JF — confirm same use-case as Philly",
+  },
+  {
+    name: "Sharp White Cheddar",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 2.69,
+    history: [
+      { date: "2026-05-06", price: 2.69 }, // Chs Ched Wht Shrp 5lb @ $13.44
+    ],
+    updated: "2026-05-06",
+    notes: "Confirm menu use",
   },
   {
     name: "Parmesan Wedge",
@@ -495,6 +538,17 @@ export const PRICE_BOOK = [
     ],
     updated: "2026-05-15",
     notes: "Lea & Perrins 20oz bottle",
+  },
+  {
+    name: "Dijon Mustard",
+    vendor: "Restaurant Depot",
+    unit: "oz",
+    price: 0.550,
+    history: [
+      { date: "2026-05-06", price: 0.550 }, // French Dijon 50oz @ $27.52
+    ],
+    updated: "2026-05-06",
+    notes: "French brand 50oz jar — confirm menu use (separate from Creole Mustard)",
   },
 
   // ── Pantry ─────────────────────────────────────────────────────────────────
