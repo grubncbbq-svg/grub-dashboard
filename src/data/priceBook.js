@@ -56,12 +56,13 @@ export const PRICE_BOOK = [
     name: "Pork Belly",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 3.48,
+    price: 3.54,
     history: [
       { date: "2026-03-16", price: 3.73 }, // $46.92 / 12.58lb
       { date: "2026-04-20", price: 3.48 }, // $43.26 / 12.43lb (Pork Belly S/On 23.88lb @$3.48/lb — likely 2 packs)
+      { date: "2026-05-13", price: 3.54 }, // $48.44 / 13.7lb
     ],
-    updated: "2026-04-20",
+    updated: "2026-05-13",
   },
   {
     name: "Turkey Breast",
@@ -80,24 +81,27 @@ export const PRICE_BOOK = [
   },
   {
     name: "Chicken Breast",
-    vendor: "Sam's Club",
+    vendor: "Restaurant Depot",
     unit: "lb",
-    price: 2.88,
+    price: 1.88,
     history: [
-      { date: "2026-04-27", price: 2.88 }, // $17.40 / 6.04lb confirmed on receipt
+      { date: "2026-04-27", price: 2.88 }, // Sam's $17.40 / 6.04lb
+      { date: "2026-05-13", price: 1.88 }, // RD case 40lb @ $75.20
     ],
-    updated: "2026-04-27",
+    updated: "2026-05-13",
+    notes: "Switched to Restaurant Depot — much cheaper than Sam's ($2.88 → $1.88/lb)",
   },
   {
     name: "Chicken Thighs",
-    vendor: "Sam's Club",
+    vendor: "Restaurant Depot",
     unit: "lb",
-    price: 3.48,
+    price: 2.30,
     history: [
-      { date: "2026-05-18", price: 3.48 }, // B/S Thighs 4.7lb @ $3.48 + 5.02lb @ $3.48
+      { date: "2026-05-18", price: 3.48 }, // Sam's B/S Thighs 4.7lb + 5.02lb @ $3.48
+      { date: "2026-05-13", price: 2.30 }, // RD case 40lb @ $92.00
     ],
-    updated: "2026-05-18",
-    notes: "Boneless/skinless thighs",
+    updated: "2026-05-13",
+    notes: "Boneless/skinless thighs — switched to RD ($3.48 → $2.30/lb)",
   },
   {
     name: "Sliced Bacon",
@@ -120,17 +124,6 @@ export const PRICE_BOOK = [
     ],
     updated: "2026-05-15",
     notes: "For biscuit & gravy special",
-  },
-  {
-    name: "Sliced Ham",
-    vendor: "Restaurant Depot",
-    unit: "lb",
-    price: 6.39,
-    history: [
-      { date: "2026-05-06", price: 6.39 }, // Ham Biscuit Slice R/W 12.98lb @ $6.39
-    ],
-    updated: "2026-05-06",
-    notes: "Confirm menu use — ham biscuits? biscuit & gravy add-on?",
   },
 
   // ── Bread ──────────────────────────────────────────────────────────────────
@@ -222,8 +215,9 @@ export const PRICE_BOOK = [
       { date: "2026-02-09", price: 1.83 }, // Red Pepper Bag 5lb @ $9.14
       { date: "2026-04-27", price: 2.97 }, // Bag Pepper Orange 5lb @ $14.85
       { date: "2026-05-06", price: 3.52 }, // Orange Pepper 5lb @ $17.59
+      { date: "2026-05-13", price: 3.82 }, // Red Pepper 5lb @ $19.09
     ],
-    updated: "2026-05-06",
+    updated: "2026-05-13",
   },
   {
     name: "Sweet Onion",
@@ -237,13 +231,20 @@ export const PRICE_BOOK = [
   },
   {
     name: "Avocado",
-    vendor: "Sam's Club",
+    vendor: "Restaurant Depot",
     unit: "each",
-    price: 0.55,
+    price: 1.43,
     history: [
-      { date: "2026-04-06", price: 0.55 }, // $4.37 / 8ct est
+      { date: "2026-04-06", price: 0.55 }, // Sam's $4.37 / 8ct est (likely misread, switched to RD)
+      { date: "2026-03-16", price: 1.09 }, // RD 8ct PB @ $8.68
+      { date: "2026-04-14", price: 1.09 }, // RD 8ct @ $8.68
+      { date: "2026-04-20", price: 1.11 }, // RD 8ct @ $8.84
+      { date: "2026-04-27", price: 1.10 }, // RD 8ct PB @ $8.82
+      { date: "2026-05-06", price: 1.62 }, // RD 8ct PB @ $12.94
+      { date: "2026-05-13", price: 1.23 }, // RD 8ct PB @ $9.87
     ],
-    updated: "2026-04-06",
+    updated: "2026-05-13",
+    notes: "Price fluctuates — using ~$1.43/each as working average per David. RD 8ct PB format.",
   },
   {
     name: "Lemon",
@@ -343,10 +344,11 @@ export const PRICE_BOOK = [
     unit: "lb",
     price: 0.40,
     history: [
-      { date: "2026-02-09", price: 0.40 }, // ESTIMATED — "Yellow Potato" @ $20.02, case weight not on receipt (assumed 50lb)
+      { date: "2026-02-09", price: 0.40 }, // "Yellow Potato" @ $20.02 (80ct case)
+      { date: "2026-05-06", price: 0.41 }, // Potato 80ct @ $20.25 (assumed 50lb case)
     ],
-    updated: "2026-02-09",
-    notes: "Estimated from RD receipt — confirm case weight (assumed 50lb at $20.02)",
+    updated: "2026-05-06",
+    notes: "80ct case from RD at ~$20/case. Assuming 50lb per case.",
   },
   {
     name: "Pistachios",
@@ -428,18 +430,7 @@ export const PRICE_BOOK = [
       { date: "2026-05-13", price: 0.139 }, // RD Cream Loaf JF 3lb @ $6.66 = 48oz
     ],
     updated: "2026-05-13",
-    notes: "Switched to Restaurant Depot Cream Loaf JF — confirm same use-case as Philly",
-  },
-  {
-    name: "Sharp White Cheddar",
-    vendor: "Restaurant Depot",
-    unit: "lb",
-    price: 2.69,
-    history: [
-      { date: "2026-05-06", price: 2.69 }, // Chs Ched Wht Shrp 5lb @ $13.44
-    ],
-    updated: "2026-05-06",
-    notes: "Confirm menu use",
+    notes: "Switched to Restaurant Depot Cream Loaf JF — used for cake/dessert frosting",
   },
   {
     name: "Parmesan Wedge",
@@ -548,7 +539,7 @@ export const PRICE_BOOK = [
       { date: "2026-05-06", price: 0.550 }, // French Dijon 50oz @ $27.52
     ],
     updated: "2026-05-06",
-    notes: "French brand 50oz jar — confirm menu use (separate from Creole Mustard)",
+    notes: "French brand 50oz jar — used in Caesar dressing and several aiolis",
   },
 
   // ── Pantry ─────────────────────────────────────────────────────────────────
