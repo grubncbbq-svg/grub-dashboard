@@ -66,16 +66,16 @@ export const PRICE_BOOK = [
     name: "Turkey Breast",
     vendor: "Harris Teeter",
     unit: "lb",
-    price: 2.00,
+    price: 2.50,
     history: [
-      { date: "2026-01-05", price: 12.75 }, // $63.75 / 5 breasts (per breast, ~8lb ea → ~$1.59/lb)
-      { date: "2026-01-16", price: 17.03 }, // $68.13 / 4 breasts (per breast)
-      { date: "2026-02-02", price: 19.65 }, // $78.58 / 4 breasts
-      { date: "2026-04-27", price: 2.00 },  // $8.52 / 4.26lb — confirmed per-lb price on receipt
-      { date: "2026-05-12", price: 2.00 },  // 4 breasts $16.23+$17.38+$17.63+$17.53 = $68.77 total, no per-lb on receipt
+      { date: "2026-01-05", price: 12.75 }, // $63.75 / 5 units (legacy per-unit pricing)
+      { date: "2026-01-16", price: 17.03 }, // $68.13 / 4 units (legacy per-unit pricing)
+      { date: "2026-02-02", price: 19.65 }, // $78.58 / 4 units (legacy per-unit pricing)
+      { date: "2026-04-27", price: 1.99 },  // VIC sale price — $8.52 / 4.26lb
+      { date: "2026-05-12", price: 2.50 },  // Regular shelf — 4 units totaling $68.77 (~27.5lb @ $2.50/lb)
     ],
     updated: "2026-05-12",
-    notes: "5/12 receipt: 4 breasts totaling $68.77, no weights shown — confirm per-lb",
+    notes: "Each unit = 2 breasts attached to keel/breast plate. Regular: $2.50/lb. VIC sale: $1.99/lb.",
   },
   {
     name: "Chicken Breast",
@@ -97,6 +97,28 @@ export const PRICE_BOOK = [
     ],
     updated: "2026-05-18",
     notes: "Boneless/skinless thighs",
+  },
+  {
+    name: "Sliced Bacon",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 4.28,
+    history: [
+      { date: "2026-05-15", price: 4.28 }, // MM Bacon 3lb @ $12.83
+    ],
+    updated: "2026-05-15",
+    notes: "Member's Mark sliced bacon — backup when house-smoked pork belly isn't ready, also for biscuit & gravy special",
+  },
+  {
+    name: "Breakfast Sausage",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 3.67,
+    history: [
+      { date: "2026-05-15", price: 3.67 }, // Sausage 2lb pack @ $7.34
+    ],
+    updated: "2026-05-15",
+    notes: "For biscuit & gravy special",
   },
 
   // ── Bread ──────────────────────────────────────────────────────────────────
@@ -307,10 +329,9 @@ export const PRICE_BOOK = [
     price: 8.99,
     history: [
       { date: "2026-04-06", price: 8.99 }, // $17.98 / 2lb est
-      { date: "2026-05-15", price: 8.99 }, // $7.86 — note container size not on receipt, assumed smaller pack at same per-lb
+      { date: "2026-05-15", price: 8.99 }, // $17.98 / 2lb — confirmed same product
     ],
     updated: "2026-05-15",
-    notes: "5/15 receipt showed $7.86 — likely a smaller container; confirm size",
   },
 
   // ── Dairy ──────────────────────────────────────────────────────────────────
@@ -463,6 +484,17 @@ export const PRICE_BOOK = [
     ],
     updated: "2026-04-27",
     notes: "Replaces Sysco Whole Grain Mustard across all recipes",
+  },
+  {
+    name: "Worcestershire Sauce",
+    vendor: "Sam's Club",
+    unit: "oz",
+    price: 0.235,
+    history: [
+      { date: "2026-05-15", price: 0.235 }, // L&P 20oz bottle, 2-pack $9.38 → $4.69/bottle / 20oz
+    ],
+    updated: "2026-05-15",
+    notes: "Lea & Perrins 20oz bottle",
   },
 
   // ── Pantry ─────────────────────────────────────────────────────────────────
