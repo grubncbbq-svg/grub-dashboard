@@ -72,8 +72,10 @@ export const PRICE_BOOK = [
       { date: "2026-01-16", price: 17.03 }, // $68.13 / 4 breasts (per breast)
       { date: "2026-02-02", price: 19.65 }, // $78.58 / 4 breasts
       { date: "2026-04-27", price: 2.00 },  // $8.52 / 4.26lb — confirmed per-lb price on receipt
+      { date: "2026-05-12", price: 2.00 },  // 4 breasts $16.23+$17.38+$17.63+$17.53 = $68.77 total, no per-lb on receipt
     ],
-    updated: "2026-04-27",
+    updated: "2026-05-12",
+    notes: "5/12 receipt: 4 breasts totaling $68.77, no weights shown — confirm per-lb",
   },
   {
     name: "Chicken Breast",
@@ -84,6 +86,17 @@ export const PRICE_BOOK = [
       { date: "2026-04-27", price: 2.88 }, // $17.40 / 6.04lb confirmed on receipt
     ],
     updated: "2026-04-27",
+  },
+  {
+    name: "Chicken Thighs",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 3.48,
+    history: [
+      { date: "2026-05-18", price: 3.48 }, // B/S Thighs 4.7lb @ $3.48 + 5.02lb @ $3.48
+    ],
+    updated: "2026-05-18",
+    notes: "Boneless/skinless thighs",
   },
 
   // ── Bread ──────────────────────────────────────────────────────────────────
@@ -101,8 +114,10 @@ export const PRICE_BOOK = [
       { date: "2026-04-23", price: 3.94 },
       { date: "2026-04-25", price: 3.94 },
       { date: "2026-04-28", price: 3.94 },
+      { date: "2026-05-09", price: 3.94 },
+      { date: "2026-05-14", price: 3.94 },
     ],
-    updated: "2026-04-28",
+    updated: "2026-05-14",
   },
   {
     name: "Focaccia Sheet",
@@ -112,8 +127,10 @@ export const PRICE_BOOK = [
     history: [
       { date: "2026-02-24", price: 17.90 },
       { date: "2026-04-09", price: 17.90 },
+      { date: "2026-05-09", price: 17.90 },
+      { date: "2026-05-14", price: 17.90 },
     ],
-    updated: "2026-04-09",
+    updated: "2026-05-14",
   },
   {
     name: "Deli Rye Loaf",
@@ -125,6 +142,40 @@ export const PRICE_BOOK = [
       { date: "2026-04-28", price: 7.27 },
     ],
     updated: "2026-04-28",
+  },
+  {
+    name: "Hoagie Roll",
+    vendor: "Strong Arm Baking",
+    unit: "each",
+    price: 0.94,
+    history: [
+      { date: "2026-02-24", price: 0.94 }, // $11.28 / 12
+      { date: "2026-05-14", price: 0.94 }, // $11.28 / 12
+    ],
+    updated: "2026-05-14",
+  },
+  {
+    name: "City White Sourdough",
+    vendor: "Strong Arm Baking",
+    unit: "each",
+    price: 5.93,
+    history: [
+      { date: "2026-04-09", price: 5.93 },
+      { date: "2026-05-09", price: 5.93 },
+      { date: "2026-05-14", price: 5.93 },
+    ],
+    updated: "2026-05-14",
+  },
+  {
+    name: "Chocolate Chess Tart",
+    vendor: "Strong Arm Baking",
+    unit: "each",
+    price: 23.93,
+    history: [
+      { date: "2026-05-09", price: 23.93 }, // LARGE format
+    ],
+    updated: "2026-05-09",
+    notes: "Large format — confirm portions per tart for dessert cost card",
   },
 
   // ── Produce ────────────────────────────────────────────────────────────────
@@ -163,11 +214,13 @@ export const PRICE_BOOK = [
     name: "Lemon",
     vendor: "Sam's Club",
     unit: "lb",
-    price: 1.31,
+    price: 1.28,
     history: [
       { date: "2026-04-06", price: 1.31 }, // 3lb bag @ $3.92
+      { date: "2026-05-15", price: 1.28 }, // 3lb bag @ $3.85
+      { date: "2026-05-18", price: 1.28 }, // 3lb bag @ $3.85
     ],
-    updated: "2026-04-06",
+    updated: "2026-05-18",
   },
   {
     name: "Goat Cheese",
@@ -254,8 +307,10 @@ export const PRICE_BOOK = [
     price: 8.99,
     history: [
       { date: "2026-04-06", price: 8.99 }, // $17.98 / 2lb est
+      { date: "2026-05-15", price: 8.99 }, // $7.86 — note container size not on receipt, assumed smaller pack at same per-lb
     ],
-    updated: "2026-04-06",
+    updated: "2026-05-15",
+    notes: "5/15 receipt showed $7.86 — likely a smaller container; confirm size",
   },
 
   // ── Dairy ──────────────────────────────────────────────────────────────────
@@ -294,21 +349,23 @@ export const PRICE_BOOK = [
     name: "Eggs",
     vendor: "Sam's Club",
     unit: "each",
-    price: 0.19,
+    price: 0.20,
     history: [
       { date: "2026-04-27", price: 0.19 }, // MM Eggs 24ct @ $4.67
+      { date: "2026-05-15", price: 0.20 }, // MM Egg 24ct @ $4.84 (x2 packs)
     ],
-    updated: "2026-04-27",
+    updated: "2026-05-15",
   },
   {
     name: "Whole Milk",
     vendor: "Sam's Club",
     unit: "oz",
-    price: 0.036,
+    price: 0.030,
     history: [
       { date: "2026-04-27", price: 0.036 }, // $3.42 / ~96oz est (3qt)
+      { date: "2026-05-15", price: 0.030 }, // $2.92 / ~96oz est
     ],
-    updated: "2026-04-27",
+    updated: "2026-05-15",
   },
   {
     name: "Cream Cheese",
@@ -320,13 +377,23 @@ export const PRICE_BOOK = [
     ],
     updated: "2026-04-17",
   },
+  {
+    name: "Parmesan Wedge",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 6.58,
+    history: [
+      { date: "2026-05-18", price: 6.58 }, // ParmWedge 1.78lb @ $6.58/lb
+    ],
+    updated: "2026-05-18",
+  },
 
   // ── Produce (continued) ────────────────────────────────────────────────────
   {
     name: "Iceberg Lettuce",
     vendor: "Sam's Club",
     unit: "each",
-    price: 1.71,
+    price: 2.13,
     history: [
       { date: "2025-10-17", price: 3.97 }, // Lettuce 2ct @ $7.94 → $3.97/head
       { date: "2025-10-26", price: 1.99 }, // Lettuce 2ct @ $3.97 → $1.99/head
@@ -335,8 +402,9 @@ export const PRICE_BOOK = [
       { date: "2026-04-06", price: 1.56 }, // Lettuce 2ct @ $3.12 → $1.56/head
       { date: "2026-04-21", price: 1.48 }, // Lettuce 2ct @ $2.95 → $1.48/head
       { date: "2026-04-27", price: 1.71 }, // Lettuce 2ct @ $3.42 → $1.71/head
+      { date: "2026-05-15", price: 2.13 }, // Lettuce 2ct @ $4.26 → $2.13/head
     ],
-    updated: "2026-04-27",
+    updated: "2026-05-15",
   },
 
   // ── Condiments ─────────────────────────────────────────────────────────────
