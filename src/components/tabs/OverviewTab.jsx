@@ -234,15 +234,26 @@ export default function OverviewTab() {
         <div style={{ fontSize: 12, color: C.dim, textTransform: "uppercase", letterSpacing: 1, marginBottom: 16 }}>
           {hasLiveData ? "Monthly Net Sales (Live)" : "Monthly Sales (Estimate)"}
         </div>
-        <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 130 }}>
+        <div style={{ display: "flex", alignItems: "flex-end", gap: 3, height: 130 }}>
           {monthly.map((m, i) => (
-            <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-              <span style={{ fontSize: 9, color: C.white }}>{fmt(m.v)}</span>
+            <div
+              key={i}
+              style={{
+                flex: 1,
+                minWidth: 0,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 3,
+              }}
+            >
+              <span style={{ fontSize: 8, color: C.white, whiteSpace: "nowrap" }}>
+                {m.v >= 1000 ? `$${(m.v / 1000).toFixed(1)}k` : `$${Math.round(m.v)}`}
+              </span>
               <div
                 style={{
                   width: "100%",
-                  maxWidth: 40,
-                  borderRadius: 4,
+                  borderRadius: 3,
                   height: `${(m.v / mx) * 100}px`,
                   background: m.proj
                     ? `repeating-linear-gradient(45deg, ${C.accentDim}, ${C.accentDim} 2px, transparent 2px, transparent 6px)`
@@ -250,7 +261,7 @@ export default function OverviewTab() {
                   border: m.proj ? `1px dashed ${C.accent}` : "none",
                 }}
               />
-              <span style={{ fontSize: 9, color: C.dim }}>{m.m}</span>
+              <span style={{ fontSize: 8, color: C.dim, whiteSpace: "nowrap" }}>{m.m}</span>
             </div>
           ))}
         </div>
