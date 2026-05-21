@@ -11,6 +11,27 @@ import {
 import KPICard from "../shared/KPICard.jsx";
 import Bar from "../shared/Bar.jsx";
 
+// Generate {start, end, label} chunks, one per calendar month, from startDateStr → today.
+// Used by the historical backfill so each sync request stays small.
+function generateMonthlyRanges(startDateStr) {
+  const ranges = [];
+  const start = new Date(`${startDateStr}T12:00:00`);
+  const today = new Date();
+  let cursor = new Date(start);
+  while (cursor <= today) {
+    const monthEnd = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 0);
+    const end = monthEnd > today ? today : monthEnd;
+    const label = cursor.toLocaleString("en-US", { month: "short", year: "numeric" });
+    ranges.push({
+      start: cursor.toISOString().split("T")[0],
+      end: end.toISOString().split("T")[0],
+      label,
+    });
+    cursor = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1);
+  }
+  return ranges;
+}
+
 function rollupByMonth(dailySales) {
   const map = new Map(); // 'YYYY-MM' → total
   for (const row of dailySales) {
@@ -53,8 +74,8 @@ export default function OverviewTab() {
   async function load() {
     try {
       const [sales, tnd, sync] = await Promise.all([
-        getDailySales(180),
-        getDailyTenders(180),
+        getDailySales(420), // ~14 months — enough to cover Oct 2025 launch + headroom
+        getDailyTenders(420),
         getLastSync(),
       ]);
       setDailySales(sales);
@@ -76,6 +97,38 @@ export default function OverviewTab() {
       await load();
     } catch (err) {
       setSyncMsg(`Error: ${err.message}`);
+    } finally {
+      setSyncing(false);
+    }
+  }
+
+  // Backfill historical sales month-by-month from launch (Oct 18, 2025) → today.
+  // Chunking avoids serverless timeout on large date ranges and gives progress feedback.
+  async function handleBackfill() {
+    if (
+      !window.confirm(
+        "Backfill all historical sales from Oct 18, 2025 to today?\n\nThis will run one Clover sync per month (~8 calls). Existing data will be updated, not duplicated."
+      )
+    ) {
+      return;
+    }
+    setSyncing(true);
+    setSyncMsg(null);
+    const ranges = generateMonthlyRanges("2025-10-18");
+    let totalOrders = 0;
+    try {
+      for (let i = 0; i < ranges.length; i++) {
+        const { start, end, label } = ranges[i];
+        setSyncMsg(`Backfilling ${label} (${i + 1}/${ranges.length})…`);
+        const result = await triggerCloverSync({ startDate: start, endDate: end });
+        totalOrders += result.ordersProcessed || 0;
+      }
+      setSyncMsg(
+        `Backfill complete — ${totalOrders} orders across ${ranges.length} months`
+      );
+      await load();
+    } catch (err) {
+      setSyncMsg(`Backfill error: ${err.message}`);
     } finally {
       setSyncing(false);
     }
@@ -108,32 +161,55 @@ export default function OverviewTab() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      {/* Sync status + button */}
-      <div style={{ ...cardStyle, padding: 14, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 11, color: C.dim, textTransform: "uppercase", letterSpacing: 1 }}>Clover Sync</div>
-          <div style={{ fontSize: 12, color: C.text, marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-            {syncMsg || lastSyncText}
+      {/* Sync status + buttons */}
+      <div style={{ ...cardStyle, padding: 14 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 11, color: C.dim, textTransform: "uppercase", letterSpacing: 1 }}>Clover Sync</div>
+            <div style={{ fontSize: 12, color: C.text, marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {syncMsg || lastSyncText}
+            </div>
           </div>
+          <button
+            onClick={handleSync}
+            disabled={syncing}
+            style={{
+              background: syncing ? C.bg : C.accent,
+              color: syncing ? C.dim : "#0C0A07",
+              border: "none",
+              borderRadius: 8,
+              padding: "8px 16px",
+              fontSize: 12,
+              fontWeight: 700,
+              cursor: syncing ? "default" : "pointer",
+              fontFamily: "inherit",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {syncing ? "Syncing..." : "Sync Now"}
+          </button>
         </div>
-        <button
-          onClick={handleSync}
-          disabled={syncing}
-          style={{
-            background: syncing ? C.bg : C.accent,
-            color: syncing ? C.dim : "#0C0A07",
-            border: "none",
-            borderRadius: 8,
-            padding: "8px 16px",
-            fontSize: 12,
-            fontWeight: 700,
-            cursor: syncing ? "default" : "pointer",
-            fontFamily: "inherit",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {syncing ? "Syncing..." : "Sync Now"}
-        </button>
+        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
+          <button
+            onClick={handleBackfill}
+            disabled={syncing}
+            style={{
+              background: "transparent",
+              color: syncing ? C.dim : C.dim,
+              border: `1px solid ${C.border}`,
+              borderRadius: 6,
+              padding: "5px 10px",
+              fontSize: 10,
+              fontWeight: 600,
+              cursor: syncing ? "default" : "pointer",
+              fontFamily: "inherit",
+              letterSpacing: 0.3,
+              textTransform: "uppercase",
+            }}
+          >
+            Backfill from Oct 2025
+          </button>
+        </div>
       </div>
 
       {/* KPIs */}
@@ -142,7 +218,7 @@ export default function OverviewTab() {
           <>
             <KPICard label="MTD Net Sales" value={fmt(mtd)} sub="This month" />
             <KPICard label="Last 30 Days" value={fmt(last30)} sub="Rolling window" />
-            <KPICard label="180-Day Total" value={fmt(totalLive)} ac={C.green} />
+            <KPICard label="All-Time Total" value={fmt(totalLive)} ac={C.green} sub="Since Oct 2025" />
           </>
         ) : (
           <>
