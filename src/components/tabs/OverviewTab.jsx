@@ -104,6 +104,8 @@ export default function OverviewTab() {
 
   // Backfill historical sales month-by-month from launch (Oct 18, 2025) → today.
   // Chunking avoids serverless timeout on large date ranges and gives progress feedback.
+  // Each month is wrapped in its own try/catch so one failure doesn't stop the rest —
+  // the summary at the end shows which months succeeded, returned zero, or errored.
   async function handleBackfill() {
     if (
       !window.confirm(
@@ -115,23 +117,27 @@ export default function OverviewTab() {
     setSyncing(true);
     setSyncMsg(null);
     const ranges = generateMonthlyRanges("2025-10-18");
-    let totalOrders = 0;
-    try {
-      for (let i = 0; i < ranges.length; i++) {
-        const { start, end, label } = ranges[i];
-        setSyncMsg(`Backfilling ${label} (${i + 1}/${ranges.length})…`);
+    const results = [];
+    for (let i = 0; i < ranges.length; i++) {
+      const { start, end, label } = ranges[i];
+      setSyncMsg(`Backfilling ${label} (${i + 1}/${ranges.length})…`);
+      try {
         const result = await triggerCloverSync({ startDate: start, endDate: end });
-        totalOrders += result.ordersProcessed || 0;
+        results.push({ label, orders: result.ordersProcessed || 0, ok: true });
+      } catch (err) {
+        results.push({ label, orders: 0, ok: false, error: err.message });
+        console.error(`Backfill failed for ${label}:`, err);
       }
-      setSyncMsg(
-        `Backfill complete — ${totalOrders} orders across ${ranges.length} months`
-      );
-      await load();
-    } catch (err) {
-      setSyncMsg(`Backfill error: ${err.message}`);
-    } finally {
-      setSyncing(false);
     }
+    const totalOrders = results.reduce((s, r) => s + r.orders, 0);
+    const failed = results.filter((r) => !r.ok).map((r) => r.label);
+    const empty = results.filter((r) => r.ok && r.orders === 0).map((r) => r.label);
+    let msg = `Done — ${totalOrders} orders across ${results.length} months`;
+    if (failed.length) msg += ` · FAILED: ${failed.join(", ")}`;
+    if (empty.length) msg += ` · EMPTY: ${empty.join(", ")}`;
+    setSyncMsg(msg);
+    await load();
+    setSyncing(false);
   }
 
   // Use live data if we have it, otherwise fall back to seed values
