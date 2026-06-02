@@ -218,6 +218,29 @@ export const PRICE_BOOK = [
     updated: "2026-05-09",
     notes: "Large format — confirm portions per tart for dessert cost card",
   },
+  {
+    name: "Apple Bourbon Cake",
+    vendor: "Strong Arm Baking",
+    unit: "each",
+    price: 23.99,
+    history: [
+      { date: "2026-05-28", price: 23.99 },
+    ],
+    updated: "2026-05-28",
+    notes: "Special dessert — no cost card needed (finished product)",
+  },
+  {
+    name: "Chocolate Chunk Brownies",
+    vendor: "Strong Arm Baking",
+    unit: "each",
+    price: 3.71,
+    history: [
+      { date: "2026-04-09", price: 3.71 }, // $22.26 / 6
+      { date: "2026-05-30", price: 3.71 }, // $22.26 / 6
+    ],
+    updated: "2026-05-30",
+    notes: "Special dessert — no cost card needed (finished product)",
+  },
 
   // ── Produce ────────────────────────────────────────────────────────────────
   {
@@ -243,6 +266,51 @@ export const PRICE_BOOK = [
       { date: "2026-04-27", price: 0.79 }, // Onion YD/Sweet 10lb @ $7.90
     ],
     updated: "2026-04-27",
+  },
+  {
+    name: "Red Onion",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 1.99,
+    history: [
+      { date: "2026-06-01", price: 1.99 }, // Sam's $5.96 — assumed 3lb bag
+    ],
+    updated: "2026-06-01",
+    notes: "Used for pickled red onions on the menu. Bag weight assumed 3lb — confirm.",
+  },
+  {
+    name: "Sweet Potato",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 1.64,
+    history: [
+      { date: "2026-05-27", price: 1.64 }, // Org Sweet Potato $4.92 — assumed 3lb pack
+      { date: "2026-06-01", price: 1.64 }, // confirmed stable
+    ],
+    updated: "2026-06-01",
+    notes: "Used for sweet potato cinnamon roll. Pack weight assumed 3lb — confirm.",
+  },
+  {
+    name: "Artichokes",
+    vendor: "Sam's Club",
+    unit: "each",
+    price: 1.31,
+    history: [
+      { date: "2026-06-01", price: 1.31 }, // $7.86 — assumed 6ct tray
+    ],
+    updated: "2026-06-01",
+    notes: "Used for Veggie Lovers sandwich. Tray count assumed 6 — confirm.",
+  },
+  {
+    name: "Mini Cucumber",
+    vendor: "Restaurant Depot",
+    unit: "each",
+    price: 0.298,
+    history: [
+      { date: "2026-05-26", price: 0.298 }, // RD 16ct bag @ $4.77 × 2 = $9.54
+    ],
+    updated: "2026-05-26",
+    notes: "Used for House Pickles (pastrami sandwich). 16ct bag from RD.",
   },
   {
     name: "Avocado",
@@ -406,14 +474,15 @@ export const PRICE_BOOK = [
     name: "Unsalted Butter",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 3.06,
+    price: 2.96,
     history: [
       { date: "2026-04-17", price: 5.48 }, // Sam's $10.96 / 2lb
       { date: "2026-05-06", price: 2.90 }, // RD BTR Unslt SLD JF 1lb @ $2.90 (×2)
       { date: "2026-05-13", price: 3.06 }, // RD BTR Unslt SLD JF 1lb @ $3.06
+      { date: "2026-05-26", price: 2.96 }, // RD BTR Unslt SLD JF 1lb @ $2.96 (×3)
     ],
-    updated: "2026-05-13",
-    notes: "Switched to Restaurant Depot — much cheaper than Sam's ($5.48 → $3.06/lb)",
+    updated: "2026-05-26",
+    notes: "Restaurant Depot — much cheaper than Sam's",
   },
   {
     name: "Eggs",
@@ -441,13 +510,14 @@ export const PRICE_BOOK = [
     name: "Cream Cheese",
     vendor: "Restaurant Depot",
     unit: "oz",
-    price: 0.139,
+    price: 0.154,
     history: [
       { date: "2026-04-17", price: 0.202 }, // Sam's Philly 32oz @ $6.47
       { date: "2026-05-13", price: 0.139 }, // RD Cream Loaf JF 3lb @ $6.66 = 48oz
+      { date: "2026-05-26", price: 0.154 }, // RD Cream Loaf JF 3lb @ $7.37 = 48oz
     ],
-    updated: "2026-05-13",
-    notes: "Switched to Restaurant Depot Cream Loaf JF — used for cake/dessert frosting",
+    updated: "2026-05-26",
+    notes: "Restaurant Depot Cream Loaf JF — used for cake/dessert frosting",
   },
   {
     name: "Parmesan Wedge",
@@ -511,7 +581,18 @@ export const PRICE_BOOK = [
       { date: "2026-05-03", price: 0.094 }, // ESTIMATE — batch: mayo+ketchup+pickle+onion+lemon / 91oz
     ],
     updated: "2026-05-03",
-    notes: "Estimated — update ketchup/pickle prices when confirmed",
+    notes: "Estimate stands — ketchup now confirmed at $0.104/oz (Heinz #10 can). When batch recipe shared, recalc with: Mayo $0.109/oz + Heinz $0.104/oz + House Pickles $0.090/oz + Red Onion + Lemon.",
+  },
+  {
+    name: "Heinz Ketchup",
+    vendor: "Restaurant Depot",
+    unit: "oz",
+    price: 0.104,
+    history: [
+      { date: "2026-05-26", price: 0.104 }, // #10 can ~109oz @ $11.36
+    ],
+    updated: "2026-05-26",
+    notes: "Heinz #10 can (~109oz). For 1,000 Island dressing.",
   },
   {
     name: "Mustard Aioli",
@@ -604,23 +685,27 @@ export const PRICE_BOOK = [
   },
   {
     name: "Apple Cider Vinegar",
-    vendor: "Sysco",
+    vendor: "Restaurant Depot",
     unit: "oz",
-    price: 0.043,
+    price: 0.046,
     history: [
-      { date: "2026-04-20", price: 0.043 }, // 1gal @ $43.85 / 128oz (4 units → $10.96/gal... wait, $43.85 total)
+      { date: "2026-04-20", price: 0.043 }, // Sysco 1gal @ $43.85 (assumed case)
+      { date: "2026-05-26", price: 0.046 }, // RD 1gal @ $5.95 / 128oz
     ],
-    updated: "2026-04-20",
+    updated: "2026-05-26",
+    notes: "Switched to Restaurant Depot — comparable price, easier sourcing",
   },
   {
     name: "Pecan Halves",
-    vendor: "Sam's Club",
+    vendor: "Restaurant Depot",
     unit: "lb",
-    price: 9.99,
+    price: 8.49,
     history: [
-      { date: "2026-04-17", price: 9.99 }, // $14.98 / 1.5lb est
+      { date: "2026-04-17", price: 9.99 }, // Sam's $14.98 / 1.5lb est
+      { date: "2026-05-26", price: 8.49 }, // RD CQ Nut Pecan Hlvs 3lb @ $25.48
     ],
-    updated: "2026-04-17",
+    updated: "2026-05-26",
+    notes: "Switched to Restaurant Depot — cheaper than Sam's ($9.99 → $8.49/lb)",
   },
   {
     name: "Maple Syrup",
@@ -631,5 +716,119 @@ export const PRICE_BOOK = [
       { date: "2026-04-27", price: 0.624 }, // MM Org Maple Syrup $11.98 / ~32oz est
     ],
     updated: "2026-04-27",
+  },
+  {
+    name: "Baking Powder",
+    vendor: "Harris Teeter",
+    unit: "each",
+    price: 3.79,
+    history: [
+      { date: "2026-05-23", price: 3.79 },
+    ],
+    updated: "2026-05-23",
+    notes: "Single can — for biscuits / batter. Confirm size for per-oz calc.",
+  },
+  {
+    name: "Buttermilk",
+    vendor: "Harris Teeter",
+    unit: "each",
+    price: 2.79,
+    history: [
+      { date: "2026-05-23", price: 2.79 }, // Charlie's Buttermilk
+    ],
+    updated: "2026-05-23",
+    notes: "Charlie's brand — for biscuits. Confirm bottle size.",
+  },
+
+  // ── HT herbs / produce (restaurant) ───────────────────────────────────────
+  {
+    name: "Dill",
+    vendor: "Harris Teeter",
+    unit: "each",
+    price: 2.99,
+    history: [
+      { date: "2026-06-01", price: 2.99 }, // Bunch Dill
+    ],
+    updated: "2026-06-01",
+    notes: "Bunch — for pickling brine and garnish",
+  },
+  {
+    name: "Yellow Corn",
+    vendor: "Harris Teeter",
+    unit: "each",
+    price: 1.00,
+    history: [
+      { date: "2026-05-29", price: 1.00 }, // PC $0.99/lb / fresh corn ear — estimate
+    ],
+    updated: "2026-05-29",
+    notes: "Restaurant use — confirm menu application and per-ear/per-lb basis",
+  },
+  {
+    name: "Yellow Grits",
+    vendor: "Harris Teeter",
+    unit: "lb",
+    price: 2.79,
+    history: [
+      { date: "2026-05-29", price: 2.79 }, // WT Yellow Grits @ $2.79/lb
+    ],
+    updated: "2026-05-29",
+    notes: "Restaurant use — confirm menu application",
+  },
+  {
+    name: "Asian Pears",
+    vendor: "Harris Teeter",
+    unit: "lb",
+    price: 4.99,
+    history: [
+      { date: "2026-05-23", price: 4.99 }, // 1.19lb @ $4.99/lb = $5.94
+    ],
+    updated: "2026-05-23",
+  },
+  {
+    name: "Bosc Pears",
+    vendor: "Harris Teeter",
+    unit: "lb",
+    price: 2.93,
+    history: [
+      { date: "2026-01-05", price: 2.79 }, // 0.94lb @ $2.79/lb est
+      { date: "2026-05-29", price: 2.93 }, // 1.20lb @ $2.93/lb
+      { date: "2026-06-01", price: 0.99 }, // 1.21lb @ $0.99/lb (sale)
+    ],
+    updated: "2026-06-01",
+  },
+
+  // ── Resale (finished products sold as-is on the menu) ─────────────────────
+  {
+    name: "IBC Root Beer",
+    vendor: "Restaurant Depot",
+    unit: "each",
+    price: 1.03,
+    history: [
+      { date: "2026-05-26", price: 1.03 }, // 24-pack @ $24.77
+    ],
+    updated: "2026-05-26",
+    notes: "Menu resale — 12oz bottle. Confirm menu price for margin tracking.",
+  },
+  {
+    name: "Cape Cod Chips",
+    vendor: "Sam's Club",
+    unit: "each",
+    price: 0.499,
+    history: [
+      { date: "2026-06-01", price: 0.499 }, // Variety pack 30ct @ $14.98
+    ],
+    updated: "2026-06-01",
+    notes: "Menu resale — single-serve bag. Confirm menu price for margin tracking.",
+  },
+  {
+    name: "GP Tea",
+    vendor: "Sam's Club",
+    unit: "each",
+    price: 0.943,
+    history: [
+      { date: "2026-05-23", price: 0.943 }, // 18-pack @ $16.98
+    ],
+    updated: "2026-05-23",
+    notes: "Menu resale — bottled tea. Confirm menu price for margin tracking.",
   },
 ];
