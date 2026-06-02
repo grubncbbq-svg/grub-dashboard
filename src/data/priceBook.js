@@ -37,6 +37,17 @@ export const PRICE_BOOK = [
     updated: "2026-04-27",
   },
   {
+    name: "Beef Short Rib",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 6.78,
+    history: [
+      { date: "2026-05-26", price: 6.78 }, // BF Sab Chuck Short Rib R/W 13.97lb @ $6.78
+    ],
+    updated: "2026-05-26",
+    notes: "Boneless chuck short rib — confirm menu use",
+  },
+  {
     name: "Corned Beef Raw",
     vendor: "Restaurant Depot",
     unit: "lb",
@@ -49,8 +60,9 @@ export const PRICE_BOOK = [
       { date: "2026-04-20", price: 5.29 }, // $99.66 / 18.91lb
       { date: "2026-04-27", price: 5.29 }, // $90.04 / 17.02lb
       { date: "2026-05-13", price: 5.27 }, // Slight decrease from $5.29 (exact weight unreadable on receipt)
+      { date: "2026-05-26", price: 5.81 }, // $132.87 / 22.87lb — notable jump
     ],
-    updated: "2026-05-13",
+    updated: "2026-05-26",
   },
   {
     name: "Pork Belly",
@@ -75,8 +87,9 @@ export const PRICE_BOOK = [
       { date: "2026-02-02", price: 19.65 }, // $78.58 / 4 units (legacy per-unit pricing)
       { date: "2026-04-27", price: 1.99 },  // VIC sale price — $8.52 / 4.26lb
       { date: "2026-05-12", price: 2.50 },  // Regular shelf — 4 units totaling $68.77 (~27.5lb @ $2.50/lb)
+      { date: "2026-05-25", price: 2.50 },  // 4 units $18.77+$17.83+$18.59+$19.28 = $74.47 (~29.8lb @ $2.50)
     ],
-    updated: "2026-05-12",
+    updated: "2026-05-25",
     notes: "Each unit = 2 breasts attached to keel/breast plate. Regular: $2.50/lb. VIC sale: $1.99/lb.",
   },
   {
@@ -99,9 +112,10 @@ export const PRICE_BOOK = [
     history: [
       { date: "2026-05-18", price: 3.48 }, // Sam's B/S Thighs 4.7lb + 5.02lb @ $3.48
       { date: "2026-05-13", price: 2.30 }, // RD case 40lb @ $92.00
+      { date: "2026-05-26", price: 2.22 }, // RD case 40lb @ $88.80 — slight drop
     ],
-    updated: "2026-05-13",
-    notes: "Boneless/skinless thighs — switched to RD ($3.48 → $2.30/lb)",
+    updated: "2026-05-26",
+    notes: "Boneless/skinless thighs — RD case pricing",
   },
   {
     name: "Sliced Bacon",
@@ -216,8 +230,9 @@ export const PRICE_BOOK = [
       { date: "2026-04-27", price: 2.97 }, // Bag Pepper Orange 5lb @ $14.85
       { date: "2026-05-06", price: 3.52 }, // Orange Pepper 5lb @ $17.59
       { date: "2026-05-13", price: 3.82 }, // Red Pepper 5lb @ $19.09
+      { date: "2026-05-26", price: 3.70 }, // Red Pepper 5lb @ $18.50
     ],
-    updated: "2026-05-13",
+    updated: "2026-05-26",
   },
   {
     name: "Sweet Onion",
@@ -335,8 +350,10 @@ export const PRICE_BOOK = [
     history: [
       { date: "2026-02-14", price: 1.99 }, // Parsley bunch @ $1.99
       { date: "2026-04-27", price: 1.99 }, // Parsley bunch @ $1.99
+      { date: "2026-05-23", price: 1.99 }, // Parsley bunch @ $1.99
+      { date: "2026-06-01", price: 1.99 }, // Parsley bunch @ $1.99 (stable)
     ],
-    updated: "2026-04-27",
+    updated: "2026-06-01",
   },
   {
     name: "Yellow Potato",
@@ -573,6 +590,17 @@ export const PRICE_BOOK = [
       { date: "2026-04-27", price: 0.95 }, // Lt Dom 25lb @ $23.70
     ],
     updated: "2026-04-27",
+  },
+  {
+    name: "Bread Flour",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 0.42,
+    history: [
+      { date: "2026-05-26", price: 0.42 }, // Sir Galahad 50lb @ $21.16
+    ],
+    updated: "2026-05-26",
+    notes: "King Arthur Sir Galahad — confirm if same flour used for biscuits / breading",
   },
   {
     name: "Apple Cider Vinegar",
