@@ -127,11 +127,12 @@ export const PRICE_BOOK = [
     name: "Sliced Bacon",
     vendor: "Sam's Club",
     unit: "lb",
-    price: 4.28,
+    price: 4.18,
     history: [
       { date: "2026-05-15", price: 4.28 }, // MM Bacon 3lb @ $12.83
+      { date: "2026-06-03", price: 4.18 }, // Smithfield Bacon 3lb @ $12.54
     ],
-    updated: "2026-05-15",
+    updated: "2026-06-03",
     notes: "Member's Mark sliced bacon — backup when house-smoked pork belly isn't ready, also for biscuit & gravy special",
   },
   {
@@ -141,8 +142,9 @@ export const PRICE_BOOK = [
     price: 3.67,
     history: [
       { date: "2026-05-15", price: 3.67 }, // Sausage 2lb pack @ $7.34
+      { date: "2026-06-03", price: 3.67 }, // Sausage 2lb pack @ $7.34 — stable
     ],
-    updated: "2026-05-15",
+    updated: "2026-06-03",
     notes: "For biscuit & gravy special",
   },
 
@@ -255,9 +257,11 @@ export const PRICE_BOOK = [
     price: 12.00,
     history: [
       { date: "2026-06-04", price: 12.00 }, // First appearance on packing slip
+      { date: "2026-06-06", price: 12.00 },
       { date: "2026-06-09", price: 12.00 },
+      { date: "2026-06-11", price: 12.00 }, // Confirmed on every June delivery
     ],
-    updated: "2026-06-09",
+    updated: "2026-06-11",
     notes: "NEW as of June 2026 — $12/delivery. On a typical $60-73 order this adds ~16-20% to effective bread cost. Factor into bread unit costs or consolidate deliveries.",
   },
 
@@ -541,6 +545,7 @@ export const PRICE_BOOK = [
     history: [
       { date: "2026-04-27", price: 0.036 }, // $3.42 / ~96oz est (3qt)
       { date: "2026-05-15", price: 0.030 }, // $2.92 / ~96oz est
+      { date: "2026-06-03", price: 0.032 }, // $3.06 / ~96oz est
       { date: "2026-06-08", price: 0.027 }, // $2.63 / ~96oz est
     ],
     updated: "2026-06-08",
@@ -566,8 +571,53 @@ export const PRICE_BOOK = [
     price: 6.58,
     history: [
       { date: "2026-05-18", price: 6.58 }, // ParmWedge 1.78lb @ $6.58/lb
+      { date: "2026-06-01", price: 6.58 }, // 1.57lb @ $6.58 — stable
     ],
-    updated: "2026-05-18",
+    updated: "2026-06-01",
+  },
+  {
+    name: "Parmigiano Reggiano",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 16.87,
+    history: [
+      { date: "2026-06-03", price: 16.87 }, // Parm Reg Wedge 1.29lb @ $16.87
+    ],
+    updated: "2026-06-03",
+    notes: "Premium import — 2.5× the standard Parmesan Wedge. Confirm which menu items use which.",
+  },
+  {
+    name: "Peeled Garlic",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 3.82,
+    history: [
+      { date: "2026-06-03", price: 3.82 }, // $11.47 — assumed 3lb jar
+    ],
+    updated: "2026-06-03",
+    notes: "Assumed 3lb jar — confirm",
+  },
+  {
+    name: "Steelhead Trout",
+    vendor: "Sam's Club",
+    unit: "lb",
+    price: 9.76,
+    history: [
+      { date: "2026-06-03", price: 9.76 }, // 2.58lb @ $9.76 = $25.18
+    ],
+    updated: "2026-06-03",
+    notes: "NEW — confirm menu use (special?). Highest per-lb protein in the book.",
+  },
+  {
+    name: "Vegetable Oil",
+    vendor: "Sam's Club",
+    unit: "each",
+    price: 12.88,
+    history: [
+      { date: "2026-06-03", price: 12.88 }, // MM PurVeg Oil — confirm jug size for per-oz
+    ],
+    updated: "2026-06-03",
+    notes: "Confirm jug size to compute per-oz",
   },
 
   // ── Produce (continued) ────────────────────────────────────────────────────
