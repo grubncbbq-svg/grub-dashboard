@@ -293,13 +293,13 @@ export const PRICE_BOOK = [
   {
     name: "Artichokes",
     vendor: "Sam's Club",
-    unit: "each",
-    price: 1.31,
+    unit: "oz",
+    price: 0.421,
     history: [
-      { date: "2026-06-01", price: 1.31 }, // $7.86 — assumed 6ct tray
+      { date: "2026-06-01", price: 0.421 }, // Jarred, 530g (18.69oz) drained @ $7.86
     ],
     updated: "2026-06-01",
-    notes: "Used for Veggie Lovers sandwich. Tray count assumed 6 — confirm.",
+    notes: "Jarred product, 530g drained weight per jar. For Veggie Lovers sandwich. Price is per oz drained.",
   },
   {
     name: "Mini Cucumber",
