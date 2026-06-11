@@ -685,6 +685,17 @@ export const PRICE_BOOK = [
     notes: "Heinz #10 can (~109oz). For 1,000 Island dressing.",
   },
   {
+    name: "Potato Salad Dressing",
+    vendor: "House",
+    unit: "oz",
+    price: 0.168,
+    history: [
+      { date: "2026-06-11", price: 0.168 }, // Lg batch: mayo 3C + EVOO ½C + creole 2T + dijon 2T + onion 1C + celery 1.5C + parsley 1C + ACV ½C ≈ $8.06 / 48oz
+    ],
+    updated: "2026-06-11",
+    notes: "Lg batch dresses 8-10lb potatoes (~24 servings). Recalc if mayo/EVOO/dijon prices move.",
+  },
+  {
     name: "Mustard Aioli",
     vendor: "House",
     unit: "oz",

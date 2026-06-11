@@ -73,4 +73,16 @@ export const COST_CARDS = [
     ],
     notes: "Batch: 20.2 lb raw corned beef → 11 lb 9.3 oz finished (57.3% yield). Sauerkraut, pickles, 1K Island are estimated — update when Sysco/RD receipts confirmed.",
   },
+  {
+    menuItem: "Smoked Bacon Potato Salad",
+    components: [
+      // Potatoes — RD 80ct case (~50lb). ~6 oz per 8 oz serving; boiled skin-on ≈ no loss
+      { ingredient: "Yellow Potato",         rawAmount: 0.375, unit: "lb", yieldPct: 100 },
+      // House dressing — Lg batch (~48 oz) dresses 8-10 lb potatoes → ~2 oz per serving
+      { ingredient: "Potato Salad Dressing", rawAmount: 2,     unit: "oz", yieldPct: 100 },
+      // House-smoked pork belly bacon — 0.5 oz cooked @ 87% smoke yield → 0.575 oz raw = 0.036 lb
+      { ingredient: "Pork Belly",            rawAmount: 0.036, unit: "lb", yieldPct: 100 },
+    ],
+    notes: "8 oz serving: ~6 oz potato + 2 oz dressing + 0.5 oz house bacon. Batch: 8-10 lb potatoes + Lg dressing ≈ 24 servings.",
+  },
 ];
