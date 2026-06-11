@@ -53,7 +53,7 @@ export const PRICE_BOOK = [
     name: "Corned Beef Raw",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 5.29,
+    price: 5.90,
     history: [
       { date: "2026-02-02", price: 5.29 }, // $106.01 / 20.04lb
       { date: "2026-02-09", price: 5.29 }, // $88.50 / 16.73lb
@@ -72,7 +72,7 @@ export const PRICE_BOOK = [
     name: "Pork Belly",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 3.54,
+    price: 3.32,
     history: [
       { date: "2026-03-16", price: 3.73 }, // $46.92 / 12.58lb
       { date: "2026-04-20", price: 3.48 }, // $43.26 / 12.43lb (Pork Belly S/On 23.88lb @$3.48/lb — likely 2 packs)
@@ -114,7 +114,7 @@ export const PRICE_BOOK = [
     name: "Chicken Thighs",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 2.30,
+    price: 2.22,
     history: [
       { date: "2026-05-18", price: 3.48 }, // Sam's B/S Thighs 4.7lb + 5.02lb @ $3.48
       { date: "2026-05-13", price: 2.30 }, // RD case 40lb @ $92.00
@@ -515,7 +515,7 @@ export const PRICE_BOOK = [
     name: "Unsalted Butter",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 2.96,
+    price: 2.94,
     history: [
       { date: "2026-04-17", price: 5.48 }, // Sam's $10.96 / 2lb
       { date: "2026-05-06", price: 2.90 }, // RD BTR Unslt SLD JF 1lb @ $2.90 (×2)
@@ -821,7 +821,7 @@ export const PRICE_BOOK = [
     name: "Apple Cider Vinegar",
     vendor: "Restaurant Depot",
     unit: "oz",
-    price: 0.046,
+    price: 0.045,
     history: [
       { date: "2026-04-20", price: 0.043 }, // Sysco 1gal @ $43.85 (assumed case)
       { date: "2026-05-26", price: 0.046 }, // RD 1gal @ $5.95 / 128oz
