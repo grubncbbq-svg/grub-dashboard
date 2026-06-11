@@ -23,8 +23,10 @@ export const PRICE_BOOK = [
       { date: "2025-10-30", price: 4.27 },  // $85.60 / 20lb est (x3)
       { date: "2025-11-13", price: 4.43 },  // $132.94 / 30lb est (x5)
       { date: "2026-04-27", price: 4.97 },  // $35.44 / 7.13lb confirmed on receipt
+      { date: "2026-06-01", price: 4.97 },  // 4.25lb + 5.35lb @ $4.97 — stable
+      { date: "2026-06-08", price: 4.97 },  // 5.19lb + 5.27lb @ $4.97 — stable
     ],
-    updated: "2026-04-27",
+    updated: "2026-06-08",
   },
   {
     name: "Chuck Roll",
@@ -61,8 +63,10 @@ export const PRICE_BOOK = [
       { date: "2026-04-27", price: 5.29 }, // $90.04 / 17.02lb
       { date: "2026-05-13", price: 5.27 }, // Slight decrease from $5.29 (exact weight unreadable on receipt)
       { date: "2026-05-26", price: 5.81 }, // $132.87 / 22.87lb — notable jump
+      { date: "2026-06-07", price: 5.90 }, // $219.36 / 37.18lb — still climbing (+12% since early May)
     ],
-    updated: "2026-05-26",
+    updated: "2026-06-07",
+    notes: "PRICE TREND WATCH: $5.27 → $5.81 → $5.90 over 4 weeks. Pressure on Pastrami margin.",
   },
   {
     name: "Pork Belly",
@@ -73,8 +77,9 @@ export const PRICE_BOOK = [
       { date: "2026-03-16", price: 3.73 }, // $46.92 / 12.58lb
       { date: "2026-04-20", price: 3.48 }, // $43.26 / 12.43lb (Pork Belly S/On 23.88lb @$3.48/lb — likely 2 packs)
       { date: "2026-05-13", price: 3.54 }, // $48.44 / 13.7lb
+      { date: "2026-06-07", price: 3.32 }, // $47.14 / 14.2lb — down
     ],
-    updated: "2026-05-13",
+    updated: "2026-06-07",
   },
   {
     name: "Turkey Breast",
@@ -96,13 +101,14 @@ export const PRICE_BOOK = [
     name: "Chicken Breast",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 1.88,
+    price: 1.59,
     history: [
       { date: "2026-04-27", price: 2.88 }, // Sam's $17.40 / 6.04lb
       { date: "2026-05-13", price: 1.88 }, // RD case 40lb @ $75.20
+      { date: "2026-06-07", price: 1.59 }, // RD case 40lb @ $63.60 — down again
     ],
-    updated: "2026-05-13",
-    notes: "Switched to Restaurant Depot — much cheaper than Sam's ($2.88 → $1.88/lb)",
+    updated: "2026-06-07",
+    notes: "Restaurant Depot case pricing — well below Sam's",
   },
   {
     name: "Chicken Thighs",
@@ -242,20 +248,34 @@ export const PRICE_BOOK = [
     notes: "Special dessert — no cost card needed (finished product)",
   },
 
+  {
+    name: "Strong Arm Delivery Fee",
+    vendor: "Strong Arm Baking",
+    unit: "each",
+    price: 12.00,
+    history: [
+      { date: "2026-06-04", price: 12.00 }, // First appearance on packing slip
+      { date: "2026-06-09", price: 12.00 },
+    ],
+    updated: "2026-06-09",
+    notes: "NEW as of June 2026 — $12/delivery. On a typical $60-73 order this adds ~16-20% to effective bread cost. Factor into bread unit costs or consolidate deliveries.",
+  },
+
   // ── Produce ────────────────────────────────────────────────────────────────
   {
     name: "Sweet Peppers",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 3.52,
+    price: 2.61,
     history: [
       { date: "2026-02-09", price: 1.83 }, // Red Pepper Bag 5lb @ $9.14
       { date: "2026-04-27", price: 2.97 }, // Bag Pepper Orange 5lb @ $14.85
       { date: "2026-05-06", price: 3.52 }, // Orange Pepper 5lb @ $17.59
       { date: "2026-05-13", price: 3.82 }, // Red Pepper 5lb @ $19.09
       { date: "2026-05-26", price: 3.70 }, // Red Pepper 5lb @ $18.50
+      { date: "2026-06-07", price: 2.61 }, // Red Pepper 5lb @ $13.07 — big drop
     ],
-    updated: "2026-05-26",
+    updated: "2026-06-07",
   },
   {
     name: "Sweet Onion",
@@ -266,6 +286,17 @@ export const PRICE_BOOK = [
       { date: "2026-04-27", price: 0.79 }, // Onion YD/Sweet 10lb @ $7.90
     ],
     updated: "2026-04-27",
+  },
+  {
+    name: "Yellow Onion",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 0.52,
+    history: [
+      { date: "2026-06-07", price: 0.52 }, // Onion Ylw Jumbo 50lb @ $25.98
+    ],
+    updated: "2026-06-07",
+    notes: "50lb jumbo case — confirm whether this replaces Sweet Onion in some recipes",
   },
   {
     name: "Red Onion",
@@ -345,7 +376,7 @@ export const PRICE_BOOK = [
     name: "Goat Cheese",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 8.03,
+    price: 7.74,
     history: [
       { date: "2025-11-15", price: 7.50 }, // Crumble 2lb @ $14.99
       { date: "2026-02-09", price: 7.50 },
@@ -353,8 +384,9 @@ export const PRICE_BOOK = [
       { date: "2026-04-27", price: 4.71 }, // Chevrai 10.5oz @ $4.71 (small format)
       { date: "2026-05-06", price: 8.03 }, // Crumb 2lb @ $16.05
       { date: "2026-05-13", price: 8.03 }, // Crumb 2lb @ $16.05 (×2 packs)
+      { date: "2026-06-07", price: 7.74 }, // Crumb 2lb @ $15.47
     ],
-    updated: "2026-05-13",
+    updated: "2026-06-07",
   },
   {
     name: "Romaine Hearts",
@@ -393,10 +425,11 @@ export const PRICE_BOOK = [
     name: "Beets",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 0.98,
+    price: 0.93,
     history: [
       { date: "2026-02-02", price: 0.59 }, // 25lb @ $14.65
       { date: "2026-04-27", price: 0.98 }, // 25lb @ $24.40
+      { date: "2026-06-07", price: 0.93 }, // 25lb @ $23.21
     ],
     updated: "2026-04-27",
   },
@@ -427,12 +460,13 @@ export const PRICE_BOOK = [
     name: "Yellow Potato",
     vendor: "Restaurant Depot",
     unit: "lb",
-    price: 0.40,
+    price: 0.47,
     history: [
       { date: "2026-02-09", price: 0.40 }, // "Yellow Potato" @ $20.02 (80ct case)
       { date: "2026-05-06", price: 0.41 }, // Potato 80ct @ $20.25 (assumed 50lb case)
+      { date: "2026-06-07", price: 0.47 }, // Potato 80ct @ $23.26 (assumed 50lb case)
     ],
-    updated: "2026-05-06",
+    updated: "2026-06-07",
     notes: "80ct case from RD at ~$20/case. Assuming 50lb per case.",
   },
   {
@@ -452,23 +486,26 @@ export const PRICE_BOOK = [
     name: "Mayonnaise",
     vendor: "Restaurant Depot",
     unit: "oz",
-    price: 0.109,
+    price: 0.103,
     history: [
       { date: "2026-02-02", price: 0.110 }, // Mayo Ex Hvy Ken 4gal @ $56.42 / 512oz
       { date: "2026-04-14", price: 0.109 }, // $55.82 / 512oz
       { date: "2026-05-13", price: 0.109 }, // $55.82 / 512oz (confirmed stable)
+      { date: "2026-06-07", price: 0.103 }, // $52.83 / 512oz
     ],
-    updated: "2026-05-13",
+    updated: "2026-06-07",
   },
   {
     name: "Heavy Cream",
-    vendor: "Sam's Club",
+    vendor: "Restaurant Depot",
     unit: "oz",
-    price: 0.054,
+    price: 0.145,
     history: [
-      { date: "2025-10-30", price: 0.054 }, // MK Heavy Cream $7.22 / ~133oz est (half gallon)
+      { date: "2025-10-30", price: 0.054 }, // Sam's MK Heavy Cream $7.22 / ~133oz est (half gallon)
+      { date: "2026-06-07", price: 0.145 }, // RD Cream JF 40% UHT 32oz @ $4.65
     ],
-    updated: "2025-10-30",
+    updated: "2026-06-07",
+    notes: "RD 40% UHT 32oz format — pricier per oz than Sam's half-gallon but currently what's purchased",
   },
   {
     name: "Unsalted Butter",
@@ -480,8 +517,9 @@ export const PRICE_BOOK = [
       { date: "2026-05-06", price: 2.90 }, // RD BTR Unslt SLD JF 1lb @ $2.90 (×2)
       { date: "2026-05-13", price: 3.06 }, // RD BTR Unslt SLD JF 1lb @ $3.06
       { date: "2026-05-26", price: 2.96 }, // RD BTR Unslt SLD JF 1lb @ $2.96 (×3)
+      { date: "2026-06-07", price: 2.94 }, // RD BTR Unslt SLD JF 1lb @ $2.94 (×5)
     ],
-    updated: "2026-05-26",
+    updated: "2026-06-07",
     notes: "Restaurant Depot — much cheaper than Sam's",
   },
   {
@@ -499,24 +537,26 @@ export const PRICE_BOOK = [
     name: "Whole Milk",
     vendor: "Sam's Club",
     unit: "oz",
-    price: 0.030,
+    price: 0.027,
     history: [
       { date: "2026-04-27", price: 0.036 }, // $3.42 / ~96oz est (3qt)
       { date: "2026-05-15", price: 0.030 }, // $2.92 / ~96oz est
+      { date: "2026-06-08", price: 0.027 }, // $2.63 / ~96oz est
     ],
-    updated: "2026-05-15",
+    updated: "2026-06-08",
   },
   {
     name: "Cream Cheese",
     vendor: "Restaurant Depot",
     unit: "oz",
-    price: 0.154,
+    price: 0.139,
     history: [
       { date: "2026-04-17", price: 0.202 }, // Sam's Philly 32oz @ $6.47
       { date: "2026-05-13", price: 0.139 }, // RD Cream Loaf JF 3lb @ $6.66 = 48oz
       { date: "2026-05-26", price: 0.154 }, // RD Cream Loaf JF 3lb @ $7.37 = 48oz
+      { date: "2026-06-07", price: 0.139 }, // RD Cream Loaf JF 3lb @ $6.68 = 48oz
     ],
-    updated: "2026-05-26",
+    updated: "2026-06-07",
     notes: "Restaurant Depot Cream Loaf JF — used for cake/dessert frosting",
   },
   {
@@ -684,6 +724,50 @@ export const PRICE_BOOK = [
     notes: "King Arthur Sir Galahad — confirm if same flour used for biscuits / breading",
   },
   {
+    name: "00 Pizza Flour",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 0.45,
+    history: [
+      { date: "2026-06-07", price: 0.45 }, // 00 Pizzeria 12.5kg (27.56lb) @ $12.49
+    ],
+    updated: "2026-06-07",
+    notes: "Confirm menu use — pizza special? flatbread?",
+  },
+  {
+    name: "Black Pepper",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 8.35,
+    history: [
+      { date: "2026-06-07", price: 8.35 }, // SP Black Pep Cafe 5lb @ $41.75
+    ],
+    updated: "2026-06-07",
+    notes: "Café grind 5lb — pastrami rub + general use",
+  },
+  {
+    name: "Ground Cinnamon",
+    vendor: "Restaurant Depot",
+    unit: "lb",
+    price: 11.62,
+    history: [
+      { date: "2026-06-07", price: 11.62 }, // SP Cinnamon Grnd CQ 1lb
+    ],
+    updated: "2026-06-07",
+    notes: "For sweet potato cinnamon roll",
+  },
+  {
+    name: "Mustard Seed",
+    vendor: "Restaurant Depot",
+    unit: "oz",
+    price: 0.36,
+    history: [
+      { date: "2026-06-07", price: 0.36 }, // SP Mustard Seed CQ 19oz @ $6.84
+    ],
+    updated: "2026-06-07",
+    notes: "For pickling spice / pastrami cure",
+  },
+  {
     name: "Apple Cider Vinegar",
     vendor: "Restaurant Depot",
     unit: "oz",
@@ -691,9 +775,10 @@ export const PRICE_BOOK = [
     history: [
       { date: "2026-04-20", price: 0.043 }, // Sysco 1gal @ $43.85 (assumed case)
       { date: "2026-05-26", price: 0.046 }, // RD 1gal @ $5.95 / 128oz
+      { date: "2026-06-07", price: 0.045 }, // RD case 6×1gal @ $34.94 = $5.82/gal
     ],
-    updated: "2026-05-26",
-    notes: "Switched to Restaurant Depot — comparable price, easier sourcing",
+    updated: "2026-06-07",
+    notes: "Restaurant Depot — comparable price, easier sourcing",
   },
   {
     name: "Pecan Halves",
