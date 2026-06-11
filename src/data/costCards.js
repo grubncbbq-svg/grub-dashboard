@@ -85,4 +85,16 @@ export const COST_CARDS = [
     ],
     notes: "8 oz serving: ~6 oz potato + 2 oz dressing + 0.5 oz house bacon. Batch: 8-10 lb potatoes + Lg dressing ≈ 24 servings.",
   },
+  {
+    menuItem: "Beet/Goat/Pistachio",
+    components: [
+      // Beets — 9 oz served; roasted/peeled yield ~80% → 11.25 oz raw = 0.703 lb
+      { ingredient: "Beets",       rawAmount: 0.703, unit: "lb", yieldPct: 100 },
+      // Goat cheese crumbles — 1 oz = 0.0625 lb
+      { ingredient: "Goat Cheese", rawAmount: 0.0625, unit: "lb", yieldPct: 100 },
+      // Pistachios — 0.5 oz = 0.03125 lb
+      { ingredient: "Pistachios",  rawAmount: 0.03125, unit: "lb", yieldPct: 100 },
+    ],
+    notes: "9 oz beets (served) + 1 oz goat + 0.5 oz pistachio. Assumes 80% roast/peel yield on beets and shelled pistachios — confirm both. No dressing/oil costed — add if the recipe includes one.",
+  },
 ];
